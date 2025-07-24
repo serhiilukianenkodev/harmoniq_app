@@ -11,7 +11,17 @@ import { Toaster } from "react-hot-toast";
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
-const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage"));
+const ArticlesPage = lazy(() => import("../pages/ArticlesPage/ArticlesPage "));
+const ArticlePage = lazy(() => import("../pages/ArticlePage/ArticlePage"));
+const UploadPhoto = lazy(() => import("../pages/UploadPhoto/UploadPhoto"));
+const AuthorsPage = lazy(() => import("../pages/AuthorsPage/AuthorsPage"));
+const AuthorProfilePage = lazy(() =>
+  import("../pages/AuthorProfilePage/AuthorProfilePage")
+);
+const CreateArticlePage = lazy(() =>
+  import("../pages/CreateArticlePage/CreateArticlePage")
+);
+const UserProfile = lazy(() => import("../pages/UserProfile/UserProfile"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,7 +33,6 @@ const App = () => {
 
   return (
     <>
-      <Toaster />
       {isRefreshing ? (
         <b>Refreshing user...</b>
       ) : (
@@ -34,7 +43,7 @@ const App = () => {
               path="/register"
               element={
                 <RestrictedRoute
-                  redirectTo="/contacts"
+                  redirectTo="/articles"
                   component={<RegisterPage />}
                 />
               }
@@ -43,23 +52,41 @@ const App = () => {
               path="/login"
               element={
                 <RestrictedRoute
-                  redirectTo="/contacts"
+                  redirectTo="/photo"
                   component={<LoginPage />}
                 />
               }
             />
+            <Route path="/articles" element={<ArticlesPage />} />
+            <Route path="/articles/:id" element={<ArticlePage />} />
+
+            <Route path="/authors" element={<AuthorsPage />} />
+            <Route path="/authors/:id" element={<AuthorProfilePage />} />
             <Route
-              path="/contacts"
+              path="/photo"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UploadPhoto />} />
+              }
+            />
+            <Route
+              path="/create"
               element={
                 <PrivateRoute
                   redirectTo="/login"
-                  component={<ContactsPage />}
+                  component={<CreateArticlePage />}
                 />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserProfile />} />
               }
             />
           </Routes>
         </Layout>
       )}
+      <Toaster />
     </>
   );
 };

@@ -2,14 +2,24 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
+  --color-black: #070721;
+  --color-green: #374f42;
+  --color-light-green: #d1e0d8;
+  --color-dark-green: #649179;
+  --color-darker-green: #374f42;
+  --color-white: #f7fffb;
+  --color-gray: #595d62;
 }
 
 body {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* margin: 0 auto; */
+  /* display: flex;
+  justify-content: center; */
+  /* min-width: 320px; */
+  /* min-height: 100vh; */
+  color: var(--color-black);
+  background-color: var(--color-white);
 }
 
 h1,
