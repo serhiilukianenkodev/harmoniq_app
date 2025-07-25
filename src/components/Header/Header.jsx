@@ -15,8 +15,11 @@ const Header = () => {
       <Container>
         <div className={css.headerContainer}>
           <Logo />
-          <Navigation />
-          {isLoggedIn ? <UserMenu /> : <AuthNav />}
+
+          <div className={css.rightBlock}>
+            <Navigation />
+            {isLoggedIn ? <UserMenu /> : <AuthNav />}
+          </div>
         </div>
       </Container>
     </header>

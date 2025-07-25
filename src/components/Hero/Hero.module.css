@@ -1,0 +1,52 @@
+.hero {
+  background-color: #eef7f3;
+  background-image: url("/public/images/hero-image.jpg");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: right center;
+  padding: 108px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 700px;
+}
+
+/* Retina-override */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero {
+    background-image: url("/public/images/hero-image@2x.jpg");
+  }
+}
+
+/* .content {
+  max-width: 600px;
+} */
+
+.content {
+  max-width: 599px;
+  z-index: 1;
+}
+
+.title {
+  /* font-family: "Manrope", sans-serif;
+  font-size: 92px;
+  font-weight: 800; */
+  line-height: 1;
+  /* letter-spacing: -1.84px; */
+  color: #374f42;
+  max-width: 599px;
+}
+
+.harmony {
+  font-family: "Merienda", cursive;
+  /* font-weight: 800;
+  font-size: 92px; */
+  color: #374f42;
+  letter-spacing: -1.84px;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}

@@ -2,10 +2,25 @@
   display: inline-block;
   text-decoration: none;
   padding: 12px;
-  font-weight: 700;
-  color: #2a363b;
+  color: #374f42;
 }
 
-.link.active {
-  color: #e84a5f;
+.link:hover {
+  color: #4a756a;
+}
+
+.join {
+  background: #649179;
+  color: white;
+  border-radius: 64px;
+  padding: 12px 16px;
+  transition: background-color 0.3s ease;
+  justify-content: center;
+  align-items: center;
+}
+
+.join:hover {
+  color: white;
+  background: var(--Green, #649179);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgba(78, 70, 180, 0.12);
 }
