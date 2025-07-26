@@ -1,9 +1,63 @@
 .form {
-  width: 320px;
+  width: 328px;
 }
 
 .label {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+  font-size: 12px;
+  gap: 4px;
+}
+
+.field{
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #9F9F9F;
+  height: 41px;
+  background-color: #f7fffb;
+  color: #595D62;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.iconButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.logBtn {
+  width: 328px;
+  background-color: #649179;
+  color: #F7FFFB;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 64px;
+  margin-top: 11px;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: #AD6A6C;
+  font-size: 12px;
+}
+
+.errorField {
+  border: 1.5px solid #AD6A6C;
+  color: #AD6A6C;
+}
+
+.iconField {
+  position: relative;
+  width: 100%;
 }
