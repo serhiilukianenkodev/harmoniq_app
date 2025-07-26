@@ -4,10 +4,20 @@ import { useState } from "react";
 import { register } from "../../redux/auth/operations";
 import { Form, Field, Formik, ErrorMessage, useField } from "formik";
 import { toast } from "react-hot-toast";
-import eyeClosed from "./eye-crossed.png";
-import eyeOpen from "./eye.png";
 import * as Yup from "yup";
 import css from "./RegisterForm.module.css";
+
+const EyeOpen = () => (
+  <svg width={24} height={24} aria-hidden="true">
+    <use href="/public/icons/sprite.svg#eye" />
+  </svg>
+);
+
+const EyeClosed = () => (
+  <svg width={24} height={24} aria-hidden="true">
+    <use href="/public/icons/sprite.svg#eye-crossed" />
+  </svg>
+);
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -96,19 +106,14 @@ const RegisterForm = () => {
                       />
                     )}
                   </Field>
-                 <button
+                    <button
                     type="button"
                     onClick={() => setShowPassword(prev => !prev)}
                     className={css.iconButton}
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
-                    <img
-                      src={showPassword ? eyeOpen : eyeClosed}
-                      alt={showPassword ? "Password visible" : "Password hidden"}
-                      width={24}
-                      height={24}
-                    />
-                </button>
+                    {showPassword ? <EyeOpen /> : <EyeClosed />}
+                  </button>
               </div>
               <ErrorMessage name="password" className={css.error} component="div" />
             </label>
@@ -131,13 +136,8 @@ const RegisterForm = () => {
                     className={css.iconButton}
                     aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                   >
-                    <img
-                      src={showConfirmPassword ? eyeOpen : eyeClosed}
-                      alt={showConfirmPassword ? "Password visible" : "Password hidden"}
-                      width={24}
-                      height={24}
-                    />
-                </button>
+                    {showConfirmPassword ? <EyeOpen /> : <EyeClosed />}
+                  </button>
               </div>
               <ErrorMessage name="confirmPassword" className={css.error} component="div" />
             </label>

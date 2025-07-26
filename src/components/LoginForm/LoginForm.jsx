@@ -2,12 +2,21 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { logIn } from "../../redux/auth/operations";
 import { Form, Field, Formik, ErrorMessage } from "formik";
-import eyeClosed from "./eye-crossed.png";
-import eyeOpen from "./eye.png";
 import * as Yup from "yup";
 import css from "./LoginForm.module.css";
 import toast from "react-hot-toast";
 
+const EyeOpen = () => (
+  <svg width={24} height={24} aria-hidden="true">
+    <use href="/public/icons/sprite.svg#eye" />
+  </svg>
+);
+
+const EyeClosed = () => (
+  <svg width={24} height={24} aria-hidden="true">
+    <use href="/public/icons/sprite.svg#eye-crossed" />
+  </svg>
+);
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -72,19 +81,14 @@ const LoginForm = () => {
       )}
     </Field>
 
-    <button
-      type="button"
-      onClick={() => setShowPassword(prev => !prev)}
-      className={css.iconButton}
-      aria-label={showPassword ? "Hide password" : "Show password"}
-    >
-      <img
-        src={showPassword ? eyeOpen : eyeClosed}
-        alt={showPassword ? "Password visible" : "Password hidden"}
-        width={24}
-        height={24}
-      />
-    </button>
+   <button
+  type="button"
+  onClick={() => setShowPassword(prev => !prev)}
+  className={css.iconButton}
+  aria-label={showPassword ? "Hide password" : "Show password"}
+>
+  {showPassword ? <EyeOpen /> : <EyeClosed />}
+</button>
   </div>
   <ErrorMessage name="password" className={css.error} component="div" />
 </label>
