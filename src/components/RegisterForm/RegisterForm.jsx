@@ -42,8 +42,6 @@ const RegisterForm = () => {
     password: Yup.string().min(8, "Too Short!").max(64, "Too Long!").trim().required(),
     confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], "Passwords don't match").min(8, "Too Short!").max(64, "Too Long!").trim().required(),
   });
-    
-
 
   return (
     <div>
