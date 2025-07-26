@@ -47,6 +47,14 @@
   margin-bottom: 20px;
 }
 
+.logBtn:hover {
+  background-color: #374F42;
+}
+
+.logBtn:focus {
+  border: 1.5px solid #F7FFFB;
+}
+
 .error {
   color: #AD6A6C;
   font-size: 12px;

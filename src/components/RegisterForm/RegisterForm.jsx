@@ -1,18 +1,25 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { register } from "../../redux/auth/operations";
 import { Form, Field, Formik, ErrorMessage, useField } from "formik";
 import { toast } from "react-hot-toast";
+import eyeClosed from "./eye-crossed.png";
+import eyeOpen from "./eye.png";
 import * as Yup from "yup";
 import css from "./RegisterForm.module.css";
 
-  const RegisterForm = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = async (values, options) => {
     try {
-      const result = await dispatch(register(values)).unwrap(); 
+      const { name, email, password } = values;
+      const result = await dispatch(register({ name, email, password })).unwrap();
+
       if (result) {
         navigate("/photo");
       }
@@ -26,14 +33,14 @@ import css from "./RegisterForm.module.css";
     name: "",
     email: "",
     password: "",
-    checkPwd: "",
+    confirmPassword: "",
   };
     
   const registerSchema = Yup.object().shape({
     name: Yup.string().min(2, "Too Short!").max(32, "Too Long!").trim().required(),
     email: Yup.string().email().max(64, "Too Long!").trim().required(),
     password: Yup.string().min(8, "Too Short!").max(64, "Too Long!").trim().required(),
-    checkPwd: Yup.string().min(8, "Too Short!").max(64, "Too Long!").trim().required(),
+    confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], "Passwords don't match").min(8, "Too Short!").max(64, "Too Long!").trim().required(),
   });
     
 
@@ -81,34 +88,60 @@ import css from "./RegisterForm.module.css";
 
             <label className={css.label}>
               Create a strong password
-              <Field name="password">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="password"
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                  />
-                )}
-              </Field>
+            <div className={css.iconField}>
+               <Field name="password">
+                    {({ field, meta }) => (
+                      <input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        className={`${css.field} ${meta.touched && meta.error ? css.errorField : ""}`}
+                      />
+                    )}
+                  </Field>
+                 <button
+                    type="button"
+                    onClick={() => setShowPassword(prev => !prev)}
+                    className={css.iconButton}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    <img
+                      src={showPassword ? eyeOpen : eyeClosed}
+                      alt={showPassword ? "Password visible" : "Password hidden"}
+                      width={24}
+                      height={24}
+                    />
+                </button>
+              </div>
               <ErrorMessage name="password" className={css.error} component="div" />
             </label>
 
             <label className={css.label}>
               Repeat your password
-              <Field name="checkPwd">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="password"
-                    className={`${css.field} ${
-                      meta.touched && meta.error ? css.errorField : ""
-                    }`}
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="checkPwd" className={css.error} component="div" />
+              <div className={css.iconField}>
+              <Field name="confirmPassword">
+                    {({ field, meta }) => (
+                      <input
+                        {...field}
+                        type={showConfirmPassword ? "text" : "password"}
+                        className={`${css.field} ${meta.touched && meta.error ? css.errorField : ""}`}
+                      />
+                    )}
+                </Field>
+                   <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(prev => !prev)}
+                    className={css.iconButton}
+                    aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                  >
+                    <img
+                      src={showConfirmPassword ? eyeOpen : eyeClosed}
+                      alt={showConfirmPassword ? "Password visible" : "Password hidden"}
+                      width={24}
+                      height={24}
+                    />
+                </button>
+              </div>
+              <ErrorMessage name="confirmPassword" className={css.error} component="div" />
             </label>
 
             <button className={css.regBtn} type="submit">
