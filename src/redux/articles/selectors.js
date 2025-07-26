@@ -3,6 +3,8 @@ import { createSelector } from "@reduxjs/toolkit";
 
 export const selectArticles = (state) => state.articles.items;
 
+export const selectLoading = (state) => state.articles.loading;
+
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],
 //   (contacts, filter) =>
