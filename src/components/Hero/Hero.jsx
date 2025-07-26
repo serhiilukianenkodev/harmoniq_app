@@ -6,10 +6,11 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.content}>
         <h1 className={styles.title}>
-          Find your <span className={styles.harmony}>harmony</span>
-          <br />
-          in community
+          Find your <br />
+          <span className={styles.harmony}>harmony</span> in <br />
+          community
         </h1>
+
         <div className={styles.buttons}>
           <a href="#popular" className={styles.filledBtn}>
             Go to Articles
