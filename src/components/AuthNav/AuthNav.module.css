@@ -30,6 +30,6 @@
 .joinNow:focus {
   background: var(--Green, #649179);
   box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgba(78, 70, 180, 0.12);
-  /* outline: none; */
+  outline: none;
   color: var(--White, #f7fffb);
 }
