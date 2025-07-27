@@ -1,5 +1,5 @@
-import { Container } from "@mui/material";
-import css from "./Footer.module.css";
+import Container from '../Container/Container.jsx';
+import css from './Footer.module.css';
 const Footer = () => {
   return (
     <footer className={css.footer}>
