@@ -9,13 +9,13 @@ import css from "./RegisterForm.module.css";
 
 const EyeOpen = () => (
   <svg width={24} height={24} aria-hidden="true">
-    <use href="/public/icons/sprite.svg#eye" />
+    <use href="/icons/sprite.svg#eye" />
   </svg>
 );
 
 const EyeClosed = () => (
   <svg width={24} height={24} aria-hidden="true">
-    <use href="/public/icons/sprite.svg#eye-crossed" />
+    <use href="/icons/sprite.svg#eye-crossed" />
   </svg>
 );
 

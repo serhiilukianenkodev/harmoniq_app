@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://harmoniq-backend-qo0h.onrender.com";
+axios.defaults.baseURL = "http://localhost:3000";
 
 // Utility to add JWT
 const setAuthHeader = (token) => {
