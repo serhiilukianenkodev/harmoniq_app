@@ -1,0 +1,9 @@
+.list {
+  border-top: 1px solid #e5e7eb;
+}
+
+.placeholder {
+  text-align: center;
+  color: #6b7280;
+  padding: 1rem;
+}
