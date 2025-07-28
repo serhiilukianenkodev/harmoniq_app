@@ -1,4 +1,5 @@
 import css from "./UploadForm.module.css";
+
 const UploadForm = () => {
     /*
     const state = getState();
@@ -12,7 +13,12 @@ const UploadForm = () => {
 
             <label class={css.labelUploadForm}>
                 <input type="file" accept="image/*" class={css.inputUploadForm} />
-                <div class={css.circleButtonUploadForm}></div>
+                <div class={css.circleButtonUploadForm}>
+                    <svg class={css.iconCircleButtonUploadForm}>
+                        <use xlinkHref='/icons/sprite.svg#eye'></use>
+                    </svg>
+
+                </div>
             </label>
 
             <button className={css.buttonUploadForm}>Save</button>
