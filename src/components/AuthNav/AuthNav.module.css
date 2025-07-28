@@ -20,6 +20,8 @@
   align-items: center;
   font-weight: 600;
   text-decoration: none;
+  width: 100px;
+  height: 45px;
 }
 
 .join:hover {
@@ -32,4 +34,22 @@
   box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgba(78, 70, 180, 0.12);
   outline: none;
   color: var(--White, #f7fffb);
+}
+
+@media (max-width: 1199px) {
+  .link {
+    display: none;
+  }
+
+  .join {
+    display: inline-flex; /* показываем Join now */
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .join {
+    display: none;
+  }
 }

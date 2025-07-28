@@ -1,5 +1,4 @@
 .header {
-  /* margin-bottom: 16px; */
   background-color: var(--color-light-green);
 }
 
@@ -14,4 +13,34 @@
   display: flex;
   align-items: center;
   gap: 32px;
+}
+
+.nav {
+  display: flex;
+}
+
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+/*************** TABLET *****************/
+@media (max-width: 1199px) {
+  .nav {
+    display: none;
+  }
+
+  .auth {
+    display: none;
+  }
+
+  .burger {
+    display: inline-flex;
+  }
+
+  .rightBlock {
+    gap: 16px;
+  }
 }

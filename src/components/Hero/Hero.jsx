@@ -1,14 +1,13 @@
-import styles from "./Hero.module.css";
-import { Link } from "react-router-dom";
+import styles from './Hero.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
     <section className={styles.hero}>
+      <div className={styles.imageOverlay}></div>
       <div className={styles.content}>
         <h1 className={styles.title}>
-          Find your <br />
-          <span className={styles.harmony}>harmony</span> in <br />
-          community
+          Find your <span className={styles.harmony}>harmony</span> in community
         </h1>
 
         <div className={styles.buttons}>
