@@ -6,7 +6,7 @@
 .about-us-section {
   margin: 36px 0;
   background-color: var(--color-white);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-manrope);
 }
 
 .section-container {
@@ -74,6 +74,10 @@
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     height: 326px;
+    padding-bottom: 43px;
+  }
+  .section-description {
+    letter-spacing: 0.6px;
   }
 
   .image-card-lotus {
@@ -105,7 +109,7 @@
   }
   .row-1-wrapper {
     display: grid;
-    grid-template-columns: 470px 656px;
+    grid-template-columns: 496px 704px;
     grid-template-rows: 326px;
     gap: 24px;
     width: 100%;
@@ -115,6 +119,7 @@
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     height: 326px;
+    padding-bottom: 57px;
   }
 
   .image-card-lotus {
@@ -124,7 +129,7 @@
   }
   .row-2-wrapper {
     display: grid;
-    grid-template-columns: 759px 370px;
+    grid-template-columns: 808px 392px;
     grid-template-rows: 398px;
     gap: 24px;
     width: 100%;
@@ -140,6 +145,16 @@
     display: block;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    height: 398px;
+  }
+  .image-card-lotus .image-card-img {
+    height: 326px;
+    object-position: center;
+  }
+  .image-card-friends .image-card-img {
+    height: 398px;
+  }
+  .image-card-yoga .image-card-img {
     height: 398px;
   }
 }
