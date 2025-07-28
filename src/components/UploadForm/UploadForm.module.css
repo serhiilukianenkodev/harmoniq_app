@@ -1,0 +1,87 @@
+.containerUploadForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 32px 16px;
+}
+
+.titleUploadForm{
+    font-family: Manrope;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+.labelUploadForm {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.inputUploadForm {
+  display: none;
+}
+
+.circleButtonUploadForm {
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  background-color: rgba(100, 145, 121, 1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  transition: background-color 0.2s ease;
+}
+
+.circleButtonUploadForm:hover {
+        box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.buttonUploadForm{
+    width: 328px;
+    height: 38px;
+
+    background-color: rgba(100, 145, 121, 1);
+    border-radius: 64px;
+    border: none;
+    
+    padding: 8px;
+    cursor: pointer;
+
+    transition: background-color  0.2s ease;
+
+    font-family: Manrope;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: rgba(247, 255, 251, 1);
+}
+
+.buttonUploadForm:hover{
+    background-color: rgba(55, 79, 66, 1);
+}
+
+.buttonUploadForm:focus{
+    box-shadow: 0px 0px 0px 6px rgba(78, 70, 180, 0.12);
+    box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
+
+}
+
+.buttonUploadForm:disabled{
+    background-color: rgba(100, 145, 121, 1);
+    cursor: not-allowed;
+    box-shadow: 0px 0px 0px 6px rgba(78, 70, 180, 0.12);
+    box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
+    opacity: 30%;
+}
