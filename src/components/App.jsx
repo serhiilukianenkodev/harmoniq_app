@@ -7,6 +7,7 @@ import RestrictedRoute from "./RestrictedRoute";
 import { refreshUser } from "../redux/auth/operations";
 import { selectIsRefreshing } from "../redux/auth/selectors";
 import { Toaster } from "react-hot-toast";
+import Loader from "./Loader/Loader";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
@@ -83,7 +84,8 @@ const App = () => {
                 <PrivateRoute redirectTo="/login" component={<UserProfile />} />
               }
             />
-          </Routes>
+            </Routes>
+            <Loader />
         </Layout>
       )}
       <Toaster />

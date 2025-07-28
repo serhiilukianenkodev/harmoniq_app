@@ -1,0 +1,32 @@
+.container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 392px;
+  background-color: #D1E0D8;
+  margin-top: 50px;
+  border-radius: 32px;
+  padding: 48px 32px;
+}
+
+.title{
+  font-size: 32px;
+  padding-bottom: 20px;
+}
+
+.subTitle{
+  font-size: 16px;
+  width: 278px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.txt{
+  font-size: 16px;
+}
+
+.loginLink{
+  font-size: 16px;
+  color: #070721;
+  font-weight: bold;
+}
