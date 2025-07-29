@@ -53,7 +53,7 @@ const LoginForm = () => {
   onSubmit={handleSubmit}
 >
   {() => (
-    <Form className={css.form} autoComplete="off">
+    <Form className={css.form} autoComplete="on">
       <label className={css.label}>
         Enter your email address
         <Field name="email">
@@ -80,13 +80,12 @@ const LoginForm = () => {
         />
       )}
     </Field>
-
    <button
-  type="button"
-  onClick={() => setShowPassword(prev => !prev)}
-  className={css.iconButton}
-  aria-label={showPassword ? "Hide password" : "Show password"}
->
+      type="button"
+      onClick={() => setShowPassword(prev => !prev)}
+      className={css.iconButton}
+      aria-label={showPassword ? "Hide password" : "Show password"}
+    >
   {showPassword ? <EyeOpen /> : <EyeClosed />}
 </button>
   </div>
