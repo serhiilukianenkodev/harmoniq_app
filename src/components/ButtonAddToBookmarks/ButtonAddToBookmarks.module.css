@@ -1,0 +1,35 @@
+.button {
+    box-sizing: border-box;
+    background: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    cursor: pointer;
+    height: 40px;
+    border: 1px solid #374F42;
+    border-radius: 64px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    aspect-ratio: 1 / 1;
+}
+
+.button:hover {
+    color: black;
+}
+
+.default {
+    color: #1f2937;
+}
+
+.default:hover {
+    color: white;
+}
+
+.bookmarked {
+    background-color: #25eb5a6e;
+    color: white;
+}
