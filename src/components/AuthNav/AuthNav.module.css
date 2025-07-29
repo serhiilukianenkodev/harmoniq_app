@@ -36,19 +36,23 @@
   color: var(--White, #f7fffb);
 }
 
-@media (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .link {
     display: none;
   }
 
   .join {
-    display: inline-flex; /* показываем Join now */
+    display: inline-flex;
     justify-content: center;
     align-items: center;
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 393px) and (max-width: 767px) {
+  .link {
+    display: none;
+  }
+
   .join {
     display: none;
   }

@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 /*************** TABLET *****************/
-@media (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .nav {
     display: none;
   }
@@ -42,5 +42,17 @@
 
   .rightBlock {
     gap: 16px;
+  }
+}
+
+/* *********** MOBILE ***********/
+
+@media (min-width: 393px) and (max-width: 767px) {
+  .nav {
+    display: none;
+  }
+
+  .burger {
+    display: inline-flex;
   }
 }
