@@ -1,11 +1,27 @@
-.link {
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #2a363b;
+.nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
 }
 
-.link.active {
-  color: #e84a5f;
+.link {
+  color: #374f42;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #4a756a;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background-color: #374f42;
+  border-radius: 1px;
 }

@@ -1,9 +1,98 @@
 .wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+}
+
+.createBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 64px;
+  background-color: #649179;
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.createBtn:hover {
+  background-color: #374f42;
+}
+
+.createBtn:focus {
+  background: #649179;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgba(78, 70, 180, 0.12);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 256px;
+  gap: 4px;
+  object-fit: cover;
+  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+}
+
+.avatarPlaceholder {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 256px;
+  background-color: lightgray;
+  color: #374f42;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .username {
+  font-family: 'Manrope', sans-serif;
+  font-style: 12px;
+  line-height: normal;
   font-weight: 700;
+  color: #374f42;
+}
+
+.divider {
+  width: 1px;
+  height: 39px;
+  background-color: #374f42;
+  margin: 0 16px;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .userInfo,
+  .divider,
+  .logoutBtn {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .createBtn,
+  .userInfo,
+  .divider,
+  .logoutBtn {
+    display: none;
+  }
 }
