@@ -7,13 +7,13 @@ import css from "./LoginForm.module.css";
 import toast from "react-hot-toast";
 
 const EyeOpen = () => (
-  <svg width={24} height={24} aria-hidden="true">
+  <svg width={18} height={17} aria-hidden="true" className={css.icon}>
     <use href="/icons/sprite.svg#eye" />
   </svg>
 );
 
 const EyeClosed = () => (
-  <svg width={24} height={24} aria-hidden="true">
+  <svg width={18} height={17} aria-hidden="true" className={css.icon}>
     <use href="/icons/sprite.svg#eye-crossed" />
   </svg>
 );
@@ -68,29 +68,29 @@ const LoginForm = () => {
         <ErrorMessage name="email" className={css.error} component="div" />
       </label>
 
-<label className={css.label}>
-  Enter a password
-  <div className={css.iconField}>
-    <Field name="password">
-      {({ field, meta }) => (
-        <input
-          {...field}
-          type={showPassword ? "text" : "password"}
-          className={`${css.field} ${meta.touched && meta.error ? css.errorField : ""}`}
-        />
-      )}
-    </Field>
-   <button
-      type="button"
-      onClick={() => setShowPassword(prev => !prev)}
-      className={css.iconButton}
-      aria-label={showPassword ? "Hide password" : "Show password"}
-    >
-  {showPassword ? <EyeOpen /> : <EyeClosed />}
-</button>
-  </div>
-  <ErrorMessage name="password" className={css.error} component="div" />
-</label>
+      <label className={css.label}>
+        Enter a password
+        <div className={css.iconField}>
+          <Field name="password">
+            {({ field, meta }) => (
+              <input
+                {...field}
+                type={showPassword ? "text" : "password"}
+                className={`${css.field} ${meta.touched && meta.error ? css.errorField : ""}`}
+              />
+            )}
+          </Field>
+        <button
+            type="button"
+            onClick={() => setShowPassword(prev => !prev)}
+            className={css.iconButton}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+        {showPassword ? <EyeOpen /> : <EyeClosed />}
+      </button>
+        </div>
+        <ErrorMessage name="password" className={css.error} component="div" />
+      </label>
 
       <button className={css.logBtn} type="submit">Login</button>
     </Form>

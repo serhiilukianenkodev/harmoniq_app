@@ -6,7 +6,6 @@ const CreateArticlePage = () => {
   return (
       <div className={css.container}>
         <h1 className={css.title}>Create an article</h1>
-        <p className={css.txt}>Title</p>
         <CreateArticleForm/>
       </div>
   )

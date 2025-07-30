@@ -1,15 +1,20 @@
+.mainContainer{
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
 .container{
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   width: 392px;
   background-color: #D1E0D8;
-  margin-top: 50px;
   border-radius: 32px;
   padding: 48px 32px;
 }
 
 .title{
+  font-weight: 700;
   font-size: 32px;
   padding-bottom: 20px;
 }
@@ -29,4 +34,22 @@
   font-size: 16px;
   color: #070721;
   font-weight: bold;
+}
+
+@media only screen and (min-width: 393px) {
+  .mainContainer {
+    padding: 85px 0;
+  }
+  .container {
+    width: 360px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mainContainer {
+    padding: 120px 0;
+  }
+  .container {
+    width: 522px;
+  }
 }

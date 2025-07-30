@@ -56,35 +56,8 @@ const CreateArticleForm = () => {
       onSubmit={handleSubmit}
       >
         {() => (
-          <Form className={css.formFileContainer} autoComplete="off">
-            <div className={css.formContainer}>
-              <Field name="title">
-                {({ field, meta }) => (
-                  <input
-                    {...field}
-                    type="text"
-                    className={`${css.input} ${meta.touched && meta.error ? css.errorField : ""}`}
-                    placeholder="Enter the title"
-                    />
-                )}
-              </Field>
-
-              <Field name="desc">
-                {({ field, meta }) => (
-                  <textarea
-                    {...field}
-                    type="text"
-                    className={`${css.txtarea} ${meta.touched && meta.error ? css.errorField : ""}`}
-                    placeholder="Enter a text"
-                  />
-                )}
-              </Field>
-              
-              <button className={css.createBtn} type="submit">Publish Article</button>
-            </div>
-             
-
-          <Field name="photo">
+          <Form className={css.container} autoComplete="off">
+            <Field name="photo">
             {({ form, meta }) => {
               const file = form.values.photo;
               const previewUrl = file ? URL.createObjectURL(file) : null;
@@ -127,8 +100,33 @@ const CreateArticleForm = () => {
                 </div>
               );
             }}
-          </Field>
+            </Field>
 
+            <label className={css.title}>
+              Title
+              <Field name="title">
+                {({ field, meta }) => (
+                  <input
+                    {...field}
+                    type="text"
+                    className={`${css.input} ${meta.touched && meta.error ? css.errorField : ""}`}
+                    placeholder="Enter the title"
+                    />
+                )}
+              </Field>
+            </label>
+           
+              <Field name="desc">
+                {({ field, meta }) => (
+                  <textarea
+                    {...field}
+                    type="text"
+                    className={`${css.txtarea} ${meta.touched && meta.error ? css.errorField : ""}`}
+                    placeholder="Enter a text"
+                  />
+                )}
+              </Field>             
+              <button className={css.createBtn} type="submit">Publish Article</button>
           </Form>
         )}
       </Formik>
