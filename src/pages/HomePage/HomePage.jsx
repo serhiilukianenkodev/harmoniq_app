@@ -1,9 +1,16 @@
+import React from "react";
+import Hero from '../../components/Hero/Hero';
+import Creators from '../../components/Creators/Creators';
+import AboutUs from '../../components/AboutUs/AboutUs.jsx';
+
+
+
 export default function HomePage() {
   return (
     <>
-      <div>
-        <h1>Welcome to the Harmoniq App!</h1>
-      </div>
+      <Hero />
+      <AboutUs />
+      <Creators />
     </>
   );
 }
