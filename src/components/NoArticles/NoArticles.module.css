@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    padding: 12px;
+    background: #D1E0D8;
+    border-radius: 32px;
+    width: 100%;
+    max-width: 420px;
+    height: 299px;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    margin: 0 auto;
+    width: 473px;
+    height: 154px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.content svg {
+    width: 64px;
+    height: 64px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+}
+
+.title {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    color: #070721;
+}
+
+.description {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 155%;
+    color: #070721;
+}
+
+.createButton {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    width: 100%;
+    border: 1px solid #374F42;
+    border-radius: 64px;
+    background-color: transparent;
+}
+
+.createButton:hover {
+    background: #557966;
+}

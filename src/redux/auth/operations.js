@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://harmoniq-backend-qo0h.onrender.com';
+axios.defaults.withCredentials = true;
 // 'https://harmoniq-backend-qo0h.onrender.com';
 // Utility to add JWT
 const setAuthHeader = token => {

@@ -1,0 +1,144 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 56px 32px 32px;
+    gap: 20px;
+    isolation: isolate;
+    position: absolute;
+    width: 420px;
+    height: 268px;
+    top: calc(50% - 268px/2);
+    background: #D1E0D8;
+    border-radius: 32px;
+    flex: none;
+    order: 6;
+    flex-grow: 0;
+    z-index: 6;
+}
+
+.closeButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.title {
+    width: 356px;
+    height: 44px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    text-align: center;
+    color: #070721;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    z-index: 0;
+}
+
+.description {
+    width: 356px;
+    height: 50px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 155%;
+    text-align: center;
+    color: #070721;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    z-index: 1;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 27px;
+    width: 356px;
+    height: 46px;
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+    z-index: 3;
+}
+
+.loginButton,
+.registerButton {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.loginButton {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12 16px;
+    gap: 12px;
+    width: 164.5px;
+    height: 46px;
+    background: transparent;
+    border: 1px solid #070721;
+    border-radius: 64px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.loginButton:hover {
+    color: white;
+    background: #2c3e32;
+}
+
+.registerButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 12px;
+    width: 164.5px;
+    height: 46px;
+    background: #649179;
+    border-radius: 64px;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.registerButton:hover {
+    background: #e0e0e0;
+}
