@@ -1,5 +1,4 @@
-import Container from "../../components/Container/Container";
-import CreateArticleForm from "../../components/createArticleForm/createArticleForm";
+import CreateArticleForm from "../../components/CreateArticleForm/CreateArticleForm";
 import css from "./CreateArticlePage.module.css"
 
 
