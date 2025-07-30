@@ -32,7 +32,7 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
                 > 
                 {!image && (
                     <svg className={css.iconCircleButtonUploadForm}>
-                    <use xlinkHref='/icons/sprite.svg#eye'></use>
+                    <use xlinkHref='/icons/sprite.svg#photo'></use>
                     </svg>
                 )}
                 </div>
