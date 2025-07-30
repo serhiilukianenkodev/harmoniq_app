@@ -27,6 +27,11 @@ const Navigation = () => {
           My Profile
         </NavLink>
       )}
+      {isLoggedIn && (
+        <NavLink className={buildLinkClass} to="/create">
+          Create an article
+        </NavLink>
+      )}
     </nav>
   );
 };

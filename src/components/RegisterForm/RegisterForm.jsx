@@ -8,14 +8,14 @@ import * as Yup from "yup";
 import css from "./RegisterForm.module.css";
 
 const EyeOpen = () => (
-  <svg width={24} height={24} aria-hidden="true">
-    <use href="/public/icons/sprite.svg#eye" />
+  <svg width={18} height={17} aria-hidden="true" className={css.icon}>
+    <use href="/icons/sprite.svg#eye" />
   </svg>
 );
 
 const EyeClosed = () => (
-  <svg width={24} height={24} aria-hidden="true">
-    <use href="/public/icons/sprite.svg#eye-crossed" />
+  <svg width={18} height={17} aria-hidden="true" className={css.icon}>
+    <use href="/icons/sprite.svg#eye-crossed" />
   </svg>
 );
 
@@ -61,7 +61,7 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
       >
         {() => (
-          <Form className={css.form} autoComplete="off">
+          <Form className={css.form} autoComplete="on">
             <label className={css.label}>
               Enter your name
               <Field name="name">

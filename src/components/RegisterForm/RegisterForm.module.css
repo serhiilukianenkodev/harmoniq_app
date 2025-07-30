@@ -35,7 +35,7 @@
 }
 
 .regBtn{
-  width: 328px;
+  width: 100%;
   background-color: #649179;
   color: #F7FFFB;
   font-size: 16px;
@@ -67,4 +67,21 @@
 .iconField {
   position: relative;
   width: 100%;
+}
+
+@media only screen and (min-width: 393px) and (max-width: 767px) {
+  .form {
+    width: 296px;
+  }
+
+  .icon{
+    width: 14px;
+    height: 13px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .form {
+    width: 458px;
+  }
 }
