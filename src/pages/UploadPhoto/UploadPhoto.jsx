@@ -1,5 +1,5 @@
 import UploadForm from '../../components/UploadForm/UploadForm.jsx';
-import css from "./UploadPhoto.module.css";
+import css from './UploadPhoto.module.css';
 
 const UploadPhoto = () => {
   return (
@@ -15,4 +15,3 @@ const UploadPhoto = () => {
 };
 
 export default UploadPhoto;
-
