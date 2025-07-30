@@ -1,7 +1,24 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-axios.defaults.baseURL = "https://connections-api.goit.global/";
+axios.defaults.baseURL = 'https://connections-api.goit.global/';
+
+export const fetchTopCreators = async () => {
+  try {
+    const response = await axios.get(
+      `${window.location.origin}/harmoniq.users.json`
+    );
+    const data = response.data;
+
+    const sorted = data
+      .toSorted((a, b) => b.articlesAmount - a.articlesAmount)
+      .slice(0, 6);
+    return sorted;
+  } catch (error) {
+    console.error('Помилка при завантаженні авторів:', error);
+    return [];
+  }
+};
 
 // GET @ /contacts
 // export const fetchContacts = createAsyncThunk(

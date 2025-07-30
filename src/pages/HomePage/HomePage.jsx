@@ -1,4 +1,5 @@
 import React from "react";
+import Creators from '../../components/Creators/Creators';
 import AboutUs from "../../components/AboutUs/AboutUs.jsx";
 
 export default function HomePage() {
@@ -8,6 +9,7 @@ export default function HomePage() {
         <h1>Welcome to the Harmoniq App!</h1>
       </div>
       <AboutUs />
+      <Creators />
     </>
   );
 }
