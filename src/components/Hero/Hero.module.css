@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   margin-top: 48px;
-  min-height: 610px;
+  min-height: 700px;
   overflow: hidden;
 }
 
@@ -9,9 +9,9 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 805.746px;
-  height: 561.904px;
-  background-image: url('/images/hero-image.jpg');
+  width: 806px;
+  height: 562px;
+  background-image: url('/images/img-desc.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -22,7 +22,7 @@
 /* Retina-override */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .imageOverlay {
-    background-image: url('/images/hero-image@2x.jpg');
+    background-image: url('/images/img-desc@2x.png');
   }
 }
 
@@ -120,7 +120,7 @@
   .imageOverlay {
     width: 430px;
     height: 383px;
-    background-image: url('/images/hero-image-tab.jpg');
+    background-image: url('/images/img-tab.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center right;
@@ -167,7 +167,7 @@
 @media (max-width: 1199px) and (-webkit-min-device-pixel-ratio: 2),
   (max-width: 1199px) and (min-resolution: 192dpi) {
   .imageOverlay {
-    background-image: url('/images/hero-image-tab@2x.jpg');
+    background-image: url('/images/img-tab@2x.png');
   }
 }
 
@@ -185,7 +185,7 @@
     position: relative;
     width: 361px;
     height: 321px;
-    background-image: url('/images/hero-image-mob.jpg');
+    background-image: url('/images/img-mob.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -233,6 +233,6 @@
 @media (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2),
   (max-width: 767px) and (min-resolution: 192dpi) {
   .imageOverlay {
-    background-image: url('/images/hero-image-mob@2x.jpg');
+    background-image: url('/images/img-mob@2x.png');
   }
 }

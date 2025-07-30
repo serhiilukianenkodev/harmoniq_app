@@ -54,6 +54,9 @@
   align-items: center;
   border-radius: 256px;
   background-color: lightgray;
+  color: #374f42;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .username {
