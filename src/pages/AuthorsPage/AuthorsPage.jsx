@@ -15,13 +15,7 @@ const AuthorsPage = () => {
 
   useEffect(() => {
     if (authors.length === 0) {
-      dispatch(fetchAuthors({ page: 1, limit: 20 }))
-        .then((result) => {
-          console.log('Initial fetchAuthors completed:', result);
-        })
-        .catch((err) => {
-          console.error('Initial fetchAuthors failed:', err);
-        });
+      dispatch(fetchAuthors({ page: 1, perPage: 20 }));
     }
   }, [dispatch, authors.length]);
 
@@ -29,24 +23,20 @@ const AuthorsPage = () => {
     e.preventDefault();
     const currentLength = authors.length;
     const nextPage = Math.ceil(currentLength / 20) + 1;
-    console.log('Fetching page:', nextPage, 'Current authors length:', currentLength);
-    dispatch(fetchAuthors({ page: nextPage, limit: 20 }));
+    dispatch(fetchAuthors({ page: nextPage, perPage: 20 }));
     setTimeout(() => {
       const newElement = listRef.current?.querySelector(`li:nth-child(${currentLength + 1})`);
       if (newElement) {
-        console.log('Scrolling to new element:', newElement);
         newElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-      } else {
-        console.warn('New element not found for scroll, current list:', listRef.current?.children);
       }
     }, 500);
   };
-
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Authors</h1>
       {error && <p className={styles.error}>Error: {error}</p>}
+      {isLoading && authors.length === 0 && <p className={styles.loading}>Loading...</p>}
       <AuthorsList authors={authors} isLoading={isLoading} ref={listRef} />
       <button
         type="button"
@@ -59,6 +49,5 @@ const AuthorsPage = () => {
     </div>
   );
 };
-
 
 export default AuthorsPage;

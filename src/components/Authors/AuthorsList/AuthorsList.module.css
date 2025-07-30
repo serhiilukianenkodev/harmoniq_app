@@ -40,7 +40,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .list {
     gap: 14px;
     padding: 20px;
