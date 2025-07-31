@@ -70,4 +70,5 @@
 
 .createButton:hover {
     background: #557966;
+    color: var(--color-white);
 }

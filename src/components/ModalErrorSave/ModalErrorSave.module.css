@@ -119,7 +119,7 @@
 }
 
 .loginButton:hover {
-    color: white;
+    color: var(--color-white);
     background: #2c3e32;
 }
 

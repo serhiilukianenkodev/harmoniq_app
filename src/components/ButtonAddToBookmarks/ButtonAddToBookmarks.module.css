@@ -32,15 +32,15 @@
 }
 
 .default:hover {
-    color: white;
+    color: var(--color-white);
 }
 
 .bookmarked {
     border: transparent;
     background-color: var(--color-dark-green);
-    color: white;
+    color: var(--color-white);
 }
 .bookmarked svg{
     /* fill:red; */
-    stroke:white;
+    stroke:var(--color-white);
 }

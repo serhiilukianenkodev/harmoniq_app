@@ -1,6 +1,6 @@
-import ArticlesItem from '../ArticlesItem/ArticlesItem';
-import NoArticles from '../NoArticles/NoArticles';
-import styles from './ArticlesList.module.css';
+import ArticlesItem from "../ArticlesItem/ArticlesItem";
+import NoArticles from "../NoArticles/NoArticles";
+import styles from "./ArticlesList.module.css";
 
 export const ArticlesList = ({ articles, isLoading }) => {
   if (isLoading) {
@@ -17,7 +17,7 @@ export const ArticlesList = ({ articles, isLoading }) => {
 
   return (
     <ul className={styles.list}>
-      {articles.map(article => (
+      {articles.map((article) => (
         <ArticlesItem key={article._id} article={article} />
       ))}
     </ul>
