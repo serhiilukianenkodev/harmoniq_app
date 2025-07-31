@@ -1,3 +1,8 @@
+.mainContainer{
+  display: flex;
+  justify-content: center;
+  padding: 172px 0px 152px;
+}
 .container{
   display: flex;
   align-items: center;
@@ -21,4 +26,22 @@
   font-size: 16px;
   color: #070721;
   font-weight: bold;
+}
+
+@media only screen and (min-width: 393px) {
+  .mainContainer{
+    padding: 85px 0;
+  }
+  .container{
+    width: 330px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mainContainer {
+    padding: 232px 0;
+  }
+  .container {
+    width: 522px;
+  }
 }

@@ -15,10 +15,9 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
         setFile(selectedFile);
     };
 
-    return (
-        <div className={css.containerUploadForm}>
-            <h2 className={css.titleUploadForm}>Upload your photo</h2>
-
+  return (
+    <div className={css.containerUploadForm}>
+      <h2 className={css.titleUploadForm}>Upload your photo</h2>
             <label className={css.labelUploadForm}>
                 <input 
                     type="file" 
@@ -44,7 +43,7 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
             >
                 Save
             </button>
-        </div>
+       </div>
     );
 };
 
