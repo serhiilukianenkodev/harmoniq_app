@@ -6,6 +6,7 @@
     height: calc(100vh - 74px - 94px);
 }
 
+
 .boxUploadPhoto{
     background-color: rgba(209, 224, 216, 1);
 
@@ -59,4 +60,27 @@
 
 .iconCloseUploadPhoto::before{
     transform: rotate(45deg);
+}
+
+@media (max-width: 768px) and (min-width: 394px) {
+    .containerUploadPhoto{
+        height: 626px;
+    }
+    
+    .boxUploadPhoto{
+        min-width: 522px;
+    }
+}
+
+@media (max-width: 393px) {
+   .containerUploadPhoto{
+        height: auto;
+        min-height: 578px;
+    }
+    .boxUploadPhoto{
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        min-height: 322px;
+    }
 }

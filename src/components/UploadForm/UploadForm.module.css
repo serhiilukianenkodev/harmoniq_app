@@ -9,9 +9,9 @@
 }
 
 .titleUploadForm{
+    height: 44px;
     font-family: Manrope;
     font-weight: 700;
-    font-style: Bold;
     font-size: 32px;
     line-height: 32px;
     letter-spacing: 0px;
@@ -42,8 +42,16 @@
 }
 
 .circleButtonUploadForm:hover {
-        box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
+
+.iconCircleButtonUploadForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68.87501525878906px;
+    height: 57.593719482421875px;
+  }
 
 .buttonUploadForm{
     width: 328px;
@@ -60,7 +68,6 @@
 
     font-family: Manrope;
     font-weight: 700;
-    font-style: Bold;
     font-size: 16px;
     line-height: 16px;
     letter-spacing: 0;
@@ -84,4 +91,40 @@
     box-shadow: 0px 0px 0px 6px rgba(78, 70, 180, 0.12);
     box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
     opacity: 30%;
+}
+
+@media (max-width: 768px) and (min-width: 394px) {
+  .containerUploadForm{
+    padding: 32px 16px;
+  }
+  .buttonUploadForm{
+    width: 458px;
+  }
+}
+
+@media (max-width: 393px) {
+  .containerUploadForm{
+    padding: 32px 16px;
+  }
+  .circleButtonUploadForm,
+  .labelUploadForm {
+    width: 100%;
+    max-width: 136px;
+    height: auto;
+    max-height: 136px;
+    aspect-ratio: 1 / 1;
+  }
+  .titleUploadForm{
+    height: auto;
+    font-size: clamp(16px, 8.14vw, 32px);
+    line-height: clamp(16px, 8.14vw, 32px);
+    white-space: nowrap;
+  }
+  .buttonUploadForm{
+    width: 100%;
+    max-width: 328px;
+    height: 38px;
+    font-size: clamp(10px, 4.07vw, 16px);
+    line-height: clamp(10px, 4.07vw, 16px);
+  }
 }

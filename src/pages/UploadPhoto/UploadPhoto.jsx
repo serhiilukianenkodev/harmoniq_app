@@ -1,14 +1,25 @@
 import UploadForm from '../../components/UploadForm/UploadForm.jsx';
-import css from './UploadPhoto.module.css';
+import css from "./UploadPhoto.module.css";
+import { useState } from 'react';
 
 const UploadPhoto = () => {
+  const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null);
+
   return (
     <div className={css.containerUploadPhoto}>
       <div className={css.boxUploadPhoto}>
-        <div class={css.boxIconCloseUploadPhoto}>
+        <div 
+          class={css.boxIconCloseUploadPhoto}
+        >
           <div class={css.iconCloseUploadPhoto}></div>
         </div>
-        <UploadForm />
+         <UploadForm
+          image={image}
+          setImage={setImage}
+          file={file}
+          setFile={setFile}
+        />
       </div>
     </div>
   );
