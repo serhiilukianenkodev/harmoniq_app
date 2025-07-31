@@ -6,8 +6,8 @@
 
 .selectedOption {
   padding: 10px;
-  border: 1px solid #cbd5e1;
-  background-color: #ffffff;
+  border: 1px solid var(--color-light-green);
+  background-color: var(--color-white);
   border-radius: 6px;
   cursor: pointer;
   display: flex;
@@ -28,7 +28,7 @@
 }
 
 .selectedOptionPopular {
-  color: #dc2626;
+    color: #070721;
 }
 
 .arrow {
@@ -42,8 +42,8 @@
   top: 100%;
   left: 0;
   right: 0;
-  background-color: #D1E0D8;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--color-light-green);
+  background-color: var(--color-white);
   border-radius: 0 0 6px 6px;
   margin-top: 0.25rem;
   list-style: none;
@@ -62,7 +62,7 @@
 
 .option:hover,
 .option:focus {
-  background-color: #e5e7eb;
+  background-color: var(--color-light-green);
   outline: none;
 }
 
@@ -75,6 +75,6 @@
 }
 
 .active {
-  background-color: #649179;
+  background-color: var(--color-dark-green);
   color: #ffffff;
 }

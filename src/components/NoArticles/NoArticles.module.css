@@ -4,7 +4,7 @@
     align-items: start;
     justify-content: space-between;
     padding: 12px;
-    background: #D1E0D8;
+    background: var(--color-light-green);
     border-radius: 32px;
     width: 100%;
     max-width: 420px;
@@ -63,11 +63,12 @@
     padding: 8px;
     gap: 8px;
     width: 100%;
-    border: 1px solid #374F42;
+    border: 1px solid var(--color-darker-green);
     border-radius: 64px;
     background-color: transparent;
 }
 
 .createButton:hover {
     background: #557966;
+    color: var(--color-white);
 }
