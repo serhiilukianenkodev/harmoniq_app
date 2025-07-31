@@ -1,7 +1,6 @@
-@media only screen and (min-width: 393px) {
-  .container{
-    width: 361px;
-  }
+.container{
+  width: 100%;
+}
  .photoBtn {
    width: 100%;
    position: relative;
@@ -37,7 +36,8 @@
     margin-bottom: 8px;
   }
 
-  .input {
+ .input {
+  width: 100%;
   font-size: 18px;
   height: 48px;
   border-radius: 8px;
@@ -47,7 +47,7 @@
   color: #595D62;
 }
 
-  .txtarea {
+.txtarea {
   width: 100%;
   font-size: 18px;
   height: 393px;
@@ -91,9 +91,57 @@
   color: #AD6A6C;
 }
 
+@media only screen and (min-width: 393px) {
+  .container {
+      width: 361px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
+  .container{
+    width: 704px;
+  }
+  .photoInput{
+    display: flex;
+    gap: 24px;
+  }
+  .photoBtn{
+    width: 340px;
+  }
+  .input{
+    margin-bottom: 162px;
+    width: 340px;
+  }
+}
 
-
+@media only screen and (min-width: 1440px) {
+  .container {
+    width: 809px;
+    position: relative;
+  }
+  .photoWrapper{
+    order: 2;
+    right: 0;
+  }
+  .btn{
+    position: absolute;
+  }
+  .inputWrapper{
+    order: 1;
+  }
+  .photoBtn {
+    width: 391px;
+    height: 280px; 
+    margin-top: 34px;
+  }
+  .input {
+    width: 809px;
+    margin-bottom: 32px;
+  }
+  .txtarea{
+    width: 809px;
+  }
+  .createBtn{
+    width: 809px;
+  }
 }

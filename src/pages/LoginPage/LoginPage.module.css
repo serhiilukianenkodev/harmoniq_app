@@ -1,13 +1,11 @@
 .mainContainer{
   display: flex;
   justify-content: center;
-  padding: 172px 0px 152px;
 }
 .container{
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 392px;
   background-color: #D1E0D8;
   border-radius: 32px;
   padding: 48px 32px;
@@ -43,5 +41,14 @@
   }
   .container {
     width: 522px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .mainContainer {
+    padding: 172px 0px 152px;
+  }
+  .container {
+    width: 392px;
   }
 }
