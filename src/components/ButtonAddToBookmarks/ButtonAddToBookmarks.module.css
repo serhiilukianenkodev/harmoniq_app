@@ -9,13 +9,19 @@
     gap: 8px;
     cursor: pointer;
     height: 40px;
-    border: 1px solid #374F42;
+    border: 1px solid var(--color-darker-green);
     border-radius: 64px;
     flex: none;
     order: 0;
     align-self: stretch;
     aspect-ratio: 1 / 1;
+
 }
+.button svg{
+     width: 24px;
+     height: 24px;
+     stroke: var(--color-green);
+ }
 
 .button:hover {
     color: black;
@@ -30,6 +36,11 @@
 }
 
 .bookmarked {
-    background-color: #25eb5a6e;
+    border: transparent;
+    background-color: var(--color-dark-green);
     color: white;
+}
+.bookmarked svg{
+    /* fill:red; */
+    stroke:white;
 }
