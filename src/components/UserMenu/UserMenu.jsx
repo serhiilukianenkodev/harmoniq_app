@@ -8,15 +8,10 @@ import ModalSignOut from '../ModalSignOut/ModalSignOut';
 const UserMenu = () => {
   const user = useSelector(selectUser);
 
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false);
 
   return (
     <div className={css.wrapper}>
-      <button className={css.createBtn} onClick={() => setIsAddModalOpen(true)}>
-        Create an article
-      </button>
-
       <div className={css.userInfo}>
         {user.avatarURL ? (
           <img src={user.avatarURL} alt="avatar" className={css.avatar} />

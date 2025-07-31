@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   margin-top: 48px;
-  min-height: 700px;
+  min-height: 570px;
   overflow: hidden;
 }
 
@@ -110,7 +110,7 @@
 }
 /* ******* TABLET ***********/
 
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1439px) {
   .hero {
     min-height: 427px;
     margin-top: 22px;
