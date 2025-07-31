@@ -37,7 +37,8 @@
     margin-bottom: 8px;
   }
 
-  .input {
+ .input {
+  width: 100%;
   font-size: 18px;
   height: 48px;
   border-radius: 8px;
@@ -47,7 +48,7 @@
   color: #595D62;
 }
 
-  .txtarea {
+.txtarea {
   width: 100%;
   font-size: 18px;
   height: 393px;
@@ -94,6 +95,45 @@
 }
 
 @media only screen and (min-width: 768px) {
+  .container{
+    width: 704px;
+  }
+  .photoInput{
+    display: flex;
+    gap: 24px;
+  }
+  .photoBtn{
+    width: 340px;
+  }
+  .input{
+    margin-bottom: 162px;
+    width: 340px;
+  }
+}
 
-
+@media only screen and (min-width: 1440px) {
+  .container {
+    width: 809px;
+  }
+  .photoWrapper{
+    order: 2;
+  }
+  .inputWrapper{
+    order: 1;
+  }
+  .photoBtn {
+    width: 391px;
+    height: 280px; 
+    margin-top: 34px;
+  }
+  .input {
+    width: 809px;
+    margin-bottom: 32px;
+  }
+  .txtarea{
+    width: 809px;
+  }
+  .createBtn{
+    width: 809px;
+  }
 }
