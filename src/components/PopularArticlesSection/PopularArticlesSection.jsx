@@ -74,7 +74,10 @@ function PopularArticlesSection() {
   const articlesToRender = popularArticles.slice(0, articlesToDisplayCount);
 
   return (
-    <section className={styles['popular-articles-section']}>
+    <section
+      id="PopularArticles"
+      className={styles['popular-articles-section']}
+    >
       <div className={styles['section-header']}>
         <h2 className={styles['section-title']}>Popular Articles</h2>
         <Link to="/articles" className={styles['all-articles-link']}>
