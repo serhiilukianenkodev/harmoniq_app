@@ -49,7 +49,6 @@ const CreateArticleForm = () => {
 
   
   return (
-    <div>
       <Formik
       initialValues={initialValues}
       validationSchema={articleSchema}
@@ -71,7 +70,7 @@ const CreateArticleForm = () => {
               }, [previewUrl]);
 
               return (
-                <div>
+                <div className={css.btn}>
                   <button
                     type="button"
                     className={css.photoBtn}
@@ -136,7 +135,6 @@ const CreateArticleForm = () => {
           </Form>
         )}
       </Formik>
-    </div>
   );
 };
 

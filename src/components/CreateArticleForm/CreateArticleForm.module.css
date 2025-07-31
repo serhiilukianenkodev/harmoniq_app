@@ -1,7 +1,6 @@
-@media only screen and (min-width: 393px) {
-  .container{
-    width: 361px;
-  }
+.container{
+  width: 100%;
+}
  .photoBtn {
    width: 100%;
    position: relative;
@@ -92,6 +91,10 @@
   color: #AD6A6C;
 }
 
+@media only screen and (min-width: 393px) {
+  .container {
+      width: 361px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -114,9 +117,14 @@
 @media only screen and (min-width: 1440px) {
   .container {
     width: 809px;
+    position: relative;
   }
   .photoWrapper{
     order: 2;
+    right: 0;
+  }
+  .btn{
+    position: absolute;
   }
   .inputWrapper{
     order: 1;
