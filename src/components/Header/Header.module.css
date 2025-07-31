@@ -1,5 +1,4 @@
 .header {
-  border-bottom: 1px solid #2a363b;
   background-color: var(--color-light-green);
 }
 
@@ -7,4 +6,53 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 14px 0px;
+}
+
+.rightBlock {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav {
+  display: flex;
+}
+
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+/*************** TABLET *****************/
+@media (min-width: 768px) and (max-width: 1199px) {
+  .nav {
+    display: none;
+  }
+
+  .auth {
+    display: none;
+  }
+
+  .burger {
+    display: inline-flex;
+  }
+
+  .rightBlock {
+    gap: 16px;
+  }
+}
+
+/* *********** MOBILE ***********/
+
+@media (min-width: 393px) and (max-width: 767px) {
+  .nav {
+    display: none;
+  }
+
+  .burger {
+    display: inline-flex;
+  }
 }

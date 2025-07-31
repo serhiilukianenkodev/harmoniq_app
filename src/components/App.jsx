@@ -1,28 +1,28 @@
-import { useEffect, lazy } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
-import PrivateRoute from "./PrivateRoute";
-import RestrictedRoute from "./RestrictedRoute";
-import { refreshUser } from "../redux/auth/operations";
-import { selectIsRefreshing } from "../redux/auth/selectors";
-import { Toaster } from "react-hot-toast";
-import Loader from "./Loader/Loader";
+import { useEffect, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './Layout';
+import PrivateRoute from './PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
+import { refreshUser } from '../redux/auth/operations';
+import { selectIsRefreshing } from '../redux/auth/selectors';
+import { Toaster } from 'react-hot-toast';
+import Loader from './Loader/Loader';
 
-const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
-const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
-const ArticlesPage = lazy(() => import("../pages/ArticlesPage/ArticlesPage "));
-const ArticlePage = lazy(() => import("../pages/ArticlePage/ArticlePage"));
-const UploadPhoto = lazy(() => import("../pages/UploadPhoto/UploadPhoto"));
-const AuthorsPage = lazy(() => import("../pages/AuthorsPage/AuthorsPage"));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const ArticlesPage = lazy(() => import('../pages/ArticlesPage/ArticlesPage '));
+const ArticlePage = lazy(() => import('../pages/ArticlePage/ArticlePage'));
+const UploadPhoto = lazy(() => import('../pages/UploadPhoto/UploadPhoto'));
+const AuthorsPage = lazy(() => import('../pages/AuthorsPage/AuthorsPage'));
 const AuthorProfilePage = lazy(() =>
-  import("../pages/AuthorProfilePage/AuthorProfilePage")
+  import('../pages/AuthorProfilePage/AuthorProfilePage')
 );
 const CreateArticlePage = lazy(() =>
-  import("../pages/CreateArticlePage/CreateArticlePage")
+  import('../pages/CreateArticlePage/CreateArticlePage')
 );
-const UserProfile = lazy(() => import("../pages/UserProfile/UserProfile"));
+const UserProfile = lazy(() => import('../pages/UserProfile/UserProfile'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -52,10 +52,7 @@ const App = () => {
             <Route
               path="/login"
               element={
-                <RestrictedRoute
-                  redirectTo="/photo"
-                  component={<LoginPage />}
-                />
+                <RestrictedRoute redirectTo="/" component={<LoginPage />} />
               }
             />
             <Route path="/articles" element={<ArticlesPage />} />
@@ -84,8 +81,8 @@ const App = () => {
                 <PrivateRoute redirectTo="/login" component={<UserProfile />} />
               }
             />
-            </Routes>
-            <Loader />
+          </Routes>
+          <Loader />
         </Layout>
       )}
       <Toaster />
