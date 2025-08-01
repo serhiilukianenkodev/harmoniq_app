@@ -49,14 +49,15 @@ const CreateArticleForm = () => {
 
   
   return (
-    <div>
       <Formik
       initialValues={initialValues}
       validationSchema={articleSchema}
       onSubmit={handleSubmit}
       >
         {() => (
-          <Form className={css.container} autoComplete="off">
+        <Form className={css.container} autoComplete="off">
+          <div className={css.photoInput}>
+            <div className={css.photoWrapper}>
             <Field name="photo">
             {({ form, meta }) => {
               const file = form.values.photo;
@@ -69,7 +70,7 @@ const CreateArticleForm = () => {
               }, [previewUrl]);
 
               return (
-                <div>
+                <div className={css.btn}>
                   <button
                     type="button"
                     className={css.photoBtn}
@@ -100,10 +101,12 @@ const CreateArticleForm = () => {
                 </div>
               );
             }}
-            </Field>
+                </Field>
+            </div>
 
-            <label className={css.title}>
-              Title
+            <div className={css.inputWrapper}>
+            <label>
+              <span className={css.title}>Title</span>
               <Field name="title">
                 {({ field, meta }) => (
                   <input
@@ -114,23 +117,24 @@ const CreateArticleForm = () => {
                     />
                 )}
               </Field>
-            </label>
-           
-              <Field name="desc">
-                {({ field, meta }) => (
-                  <textarea
-                    {...field}
-                    type="text"
-                    className={`${css.txtarea} ${meta.touched && meta.error ? css.errorField : ""}`}
-                    placeholder="Enter a text"
-                  />
-                )}
-              </Field>             
-              <button className={css.createBtn} type="submit">Publish Article</button>
+              </label>
+              </div>
+            </div>
+
+            <Field name="desc">
+              {({ field, meta }) => (               
+                <textarea               
+                  {...field}                  
+                  type="text"                  
+                  className={`${css.txtarea} ${meta.touched && meta.error ? css.errorField : ""}`}
+                  placeholder="Enter a text"
+                />                
+              )}              
+            </Field>            
+            <button className={css.createBtn} type="submit">Publish Article</button>           
           </Form>
         )}
       </Formik>
-    </div>
   );
 };
 
