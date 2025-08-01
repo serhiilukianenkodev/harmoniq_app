@@ -1,0 +1,42 @@
+/* BurgerModal.module.css */
+.overlay {
+  position: fixed;
+  top: 74px; /* высота твоего хедера */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 74px);
+  background-color: #d3e1d9;
+  z-index: 1000;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 32px; */
+}
+
+.menuNav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  align-items: center;
+}
+
+.menuNav a {
+  color: #374f42;
+  text-decoration: none;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* .closeBtn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+} */

@@ -9,37 +9,55 @@
 }
 
 .modal {
-  background: #f7fffb;
-  padding: 56px 32px 32px;
-  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #d1e0d8;
+  padding: 56px 32px 32px 32px;
+  border-radius: 32px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   text-align: center;
   position: relative;
+  gap: 20px;
 }
 
 .title {
-  font-size: 24px;
+  color: #070721;
+  text-align: center;
+  font-family: 'Manrope', sans-serif;
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
+  line-height: normal;
 }
 
 .message {
+  color: #070721;
+  text-align: center;
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
-  margin-bottom: 20px;
+  font-weight: 400;
+  line-height: 24.8px;
 }
 
 .buttons {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 27px;
+  align-self: stretch;
 }
 
 .logoutBtn,
 .cancelBtn {
   flex: 1;
-  padding: 12px;
-  font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  line-height: normal;
   border-radius: 64px;
   border: none;
   cursor: pointer;
@@ -47,22 +65,39 @@
 
 .logoutBtn {
   background-color: #649179;
-  color: white;
+  color: #f7fffb;
 }
 
 .logoutBtn:hover {
   background-color: #374f42;
 }
 
+.logoutBtn:focus {
+  background: #649179;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgba(78, 70, 180, 0.12);
+}
+
 .cancelBtn {
-  background: #f0f0f0;
+  background-color: transparent;
+  border: 1px solid #070721;
+  color: #070721;
+}
+
+.cancelBtn:hover {
+  border: 1px solid var(--White, #f7fffb);
+  background: #f7fffb;
+}
+
+.outlineBtn:focus {
+  border: 1px solid var(--White, #f7fffb);
+  background: var(--White, #f7fffb);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgba(78, 70, 180, 0.12);
 }
 
 .close {
   position: absolute;
   top: 16px;
-  right: 20px;
-  font-size: 24px;
+  right: 32px;
   background: none;
   border: none;
   cursor: pointer;
