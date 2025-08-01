@@ -4,74 +4,80 @@ import styles from './PopularArticlesSection.module.css';
 import { ArticlesList } from '../ArticlesList/ArticlesList.jsx';
 import NoArticles from '../NoArticles/NoArticles.jsx';
 
-const mockArticles = Array.from({ length: 6 }, (_, i) => ({
-  id: i + 1,
-  image: `https://placehold.co/600x400/gray/white?text=Article+${i + 1}`,
-  author: `Author ${i + 1}`,
-  title: `Article Title ${i + 1}`,
-  description: `This is a short description for article ${
-    i + 1
-  }. It covers various aspects of well-being and mental health, providing insights and tips for a balanced life.`,
-  type: 'Popular',
-}));
-
-const mockFetchPopularArticles = () => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        articles: mockArticles,
-      });
-    }, 500);
-  });
-};
-
 function PopularArticlesSection() {
-  const [popularArticles, setPopularArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [articlesToDisplayCount, setArticlesToDisplayCount] = useState(4);
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      setIsLoading(true);
-      try {
-        const result = await mockFetchPopularArticles();
-        setPopularArticles(result.articles);
-      } catch (error) {
-        console.error('Error fetching popular articles:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const getArticlesCountForBreakpoint = () => {
+    if (window.innerWidth >= 1440) {
+      return 3;
+    } else if (window.innerWidth >= 768) {
+      return 4;
+    } else {
+      return 4;
+    }
+  };
 
-    fetchArticles();
+  const fetchPopularArticles = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const queryParams = new URLSearchParams({
+        filter: 'Popular',
+        page: 1,
+        perPage: 4,
+      });
+
+      const response = await fetch(
+        `https://harmoniq-backend-qo0h.onrender.com/articles?${queryParams}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.status !== 200) {
+        throw new Error(result.message || 'Failed to fetch popular articles');
+      }
+
+      const fetchedArticles = result.data.articles || [];
+      setArticles(fetchedArticles);
+    } catch (e) {
+      console.error('Error fetching popular articles:', e);
+      setError(e.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPopularArticles();
   }, []);
 
   useEffect(() => {
-    const mediaQueryDesktop = window.matchMedia('(min-width: 1440px)');
-    const mediaQueryTablet = window.matchMedia(
-      '(min-width: 768px) and (max-width: 1439px)'
-    );
-    const updateArticlesCount = () => {
-      if (mediaQueryDesktop.matches) {
-        setArticlesToDisplayCount(3);
-      } else if (mediaQueryTablet.matches) {
-        setArticlesToDisplayCount(4);
-      } else {
-        setArticlesToDisplayCount(4);
-      }
+    const updateDisplayedArticlesCount = () => {
+      const count = getArticlesCountForBreakpoint();
+      setArticlesToDisplayCount(count);
     };
-    updateArticlesCount();
 
-    mediaQueryDesktop.addEventListener('change', updateArticlesCount);
-    mediaQueryTablet.addEventListener('change', updateArticlesCount);
+    updateDisplayedArticlesCount();
+    window.addEventListener('resize', updateDisplayedArticlesCount);
 
-    return () => {
-      mediaQueryDesktop.removeEventListener('change', updateArticlesCount);
-      mediaQueryTablet.removeEventListener('change', updateArticlesCount);
-    };
-  }, [popularArticles]);
+    return () =>
+      window.removeEventListener('resize', updateDisplayedArticlesCount);
+  }, [articles]);
 
-  const articlesToRender = popularArticles.slice(0, articlesToDisplayCount);
+  const articlesToRender = articles.slice(0, articlesToDisplayCount);
 
   return (
     <section
@@ -95,6 +101,8 @@ function PopularArticlesSection() {
 
       {isLoading ? (
         <p className={styles.loadingText}>Loading popular articles...</p>
+      ) : error ? (
+        <p className={styles.errorText}>Error: {error}</p>
       ) : articlesToRender.length === 0 ? (
         <NoArticles />
       ) : (
