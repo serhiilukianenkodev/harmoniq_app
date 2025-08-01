@@ -51,6 +51,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
+    <div className={styles.backdrop} onClick={onClose}>
     <div className={styles.overlay}>
       <nav className={styles.menuNav}>
         <NavLink to="/" onClick={onClose}>
@@ -66,6 +67,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
           Log in
         </NavLink>
       </nav>
+    </div>
     </div>
   );
 };

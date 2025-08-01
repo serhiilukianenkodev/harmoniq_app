@@ -13,7 +13,7 @@ export default function Hero() {
         </h1>
 
         <div className={styles.buttons}>
-          <a href="#popular" className={styles.filledBtn}>
+          <a href="#PopularArticles" className={styles.filledBtn}>
             Go to Articles
           </a>
           <Link to="/register" className={styles.outlineBtn}>

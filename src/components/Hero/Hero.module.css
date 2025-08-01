@@ -236,3 +236,10 @@
     background-image: url('/images/img-mob@2x.png');
   }
 }
+
+@media (max-width: 392px) {
+  .imageOverlay {
+    background-size: contain;
+    width: 100%;
+  }
+}

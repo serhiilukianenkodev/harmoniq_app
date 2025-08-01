@@ -1,10 +1,20 @@
 /* BurgerModal.module.css */
-.overlay {
+/* .backdrop {
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+} */
+
+.overlay {
+  position: absolute;
   top: 74px; /* высота твоего хедера */
   left: 0;
   width: 100%;
-  height: calc(100% - 74px);
+  /* height: calc(100% - 74px); */
   background-color: #d3e1d9;
   z-index: 1000;
   padding: 24px 0;
