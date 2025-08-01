@@ -1,50 +1,52 @@
-.container{
+.container {
   width: 100%;
+  display: grid;
+  gap: 24px;
 }
- .photoBtn {
-   width: 100%;
-   position: relative;
-   overflow: hidden;
-   height: 233px;
-   background-color: #9F9F9F;
-   border: none;
-   border-radius: 16px;
-   margin-bottom: 24px;
- }
+.photoBtn {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 233px;
+  background-color: #9f9f9f;
+  border: none;
+  border-radius: 16px;
+  /* margin-bottom: 24px; */
+}
 
- .previewUrl {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   border-radius: 8px;
- }
+.previewUrl {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
- .inputFile {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   opacity: 0;
-   cursor: pointer;
- }
+.inputFile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
 
-  .title {
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
 
- .input {
+.input {
   width: 100%;
   font-size: 18px;
   height: 48px;
   border-radius: 8px;
-  border: 1px solid #9F9F9F;
+  border: 1px solid #9f9f9f;
   padding: 12px;
-  margin-bottom: 24px;
-  color: #595D62;
+  /* margin-bottom: 24px; */
+  color: #595d62;
 }
 
 .txtarea {
@@ -52,21 +54,21 @@
   font-size: 18px;
   height: 393px;
   border-radius: 8px;
-  border: 1px solid #9F9F9F;
+  border: 1px solid #9f9f9f;
   padding: 12px;
-  margin-bottom: 24px;
-  color: #595D62;
+  /* margin-bottom: 24px; */
+  color: #595d62;
   resize: none;
 }
 .txtarea::placeholder,
-.input::placeholder{
-  color: #595D62 ;
+.input::placeholder {
+  color: #595d62;
 }
 
 .createBtn {
   width: 100%;
   background-color: #649179;
-  color: #F7FFFB;
+  color: #f7fffb;
   font-size: 16px;
   padding: 12px;
   border: none;
@@ -74,74 +76,87 @@
 }
 
 .createBtn:hover {
-  background-color: #374F42;
+  background-color: #374f42;
 }
 
 .createBtn:focus {
-  border: 1.5px solid #F7FFFB;
+  border: 1.5px solid #f7fffb;
 }
 
 .error {
-  color: #AD6A6C;
-  font-size: 12px; 
+  color: #ad6a6c;
+  font-size: 12px;
 }
 
 .errorField {
-  border: 1.5px solid #AD6A6C;
-  color: #AD6A6C;
+  border: 1.5px solid #ad6a6c;
+  color: #ad6a6c;
 }
 
 @media only screen and (min-width: 393px) {
   .container {
-      width: 361px;
-    }
+    width: 361px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-  .container{
+  .container {
     width: 704px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
   }
-  .photoInput{
+  .photoInput {
     display: flex;
-    gap: 24px;
+    /* gap: 24px; */
   }
-  .photoBtn{
+
+  .txtarea {
+    grid-column: 1 / 3;
+  }
+  .createBtn {
+    grid-row-start: 3;
+    grid-column: 1 / 3;
+  }
+  .photoBtn {
     width: 340px;
   }
-  .input{
-    margin-bottom: 162px;
+  .input {
+    /* margin-bottom: 162px; */
     width: 340px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .container {
-    width: 809px;
-    position: relative;
+    width: 1226px;
+    grid-template-columns: 1fr 391px;
   }
-  .photoWrapper{
-    order: 2;
-    right: 0;
+  .photoWrapper {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
   }
-  .btn{
-    position: absolute;
+  .btn {
+    /* position: absolute; */
   }
-  .inputWrapper{
-    order: 1;
+  .inputWrapper {
+    /* order: 1; */
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
   }
   .photoBtn {
     width: 391px;
-    height: 280px; 
+    height: 280px;
     margin-top: 34px;
   }
   .input {
     width: 809px;
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
   }
-  .txtarea{
+  .txtarea {
     width: 809px;
+    grid-row: 2 / 3;
   }
-  .createBtn{
+  .createBtn {
     width: 809px;
   }
 }
