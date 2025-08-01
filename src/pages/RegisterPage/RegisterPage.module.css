@@ -1,13 +1,11 @@
 .mainContainer{
   display: flex;
   justify-content: center;
-  padding: 50px 0;
 }
 .container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 392px;
   background-color: #D1E0D8;
   border-radius: 32px;
   padding: 48px 32px;
@@ -51,5 +49,15 @@
   }
   .container {
     width: 522px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .mainContainer {
+    padding: 50px 0;
+  }
+
+  .container {
+    width: 392px;
   }
 }
