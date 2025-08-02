@@ -3,22 +3,28 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://harmoniq-backend-qo0h.onrender.com';
 
-export const fetchTopCreators = async () => {
-  try {
-    const response = await axios.get(
-      `${window.location.origin}/harmoniq.users.json`
-    );
-    const data = response.data;
-
-    const sorted = data
-      .toSorted((a, b) => b.articlesAmount - a.articlesAmount)
-      .slice(0, 6);
-    return sorted;
-  } catch (error) {
-    console.error('Помилка при завантаженні авторів:', error);
-    return [];
+export const fetchTopCreators = createAsyncThunk(
+  'authors/fetchTopCreators',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`/authors`, {
+        params: {
+          page: 1,
+          perPage: 100,
+        },
+      });
+      const creators = response.data?.data?.users || [];
+      const topCreators = creators
+        .toSorted((a, b) => b.articlesAmount - a.articlesAmount)
+        .slice(0, 6);
+      return topCreators;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
   }
-};
+);
 
 export const fetchAuthors = createAsyncThunk(
   'authors/fetchAuthors',
