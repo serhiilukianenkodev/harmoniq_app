@@ -35,3 +35,24 @@ export const fetchAuthors = createAsyncThunk(
     }
   }
 );
+// POST /user/photo
+export const uploadUserPhoto = createAsyncThunk(
+  'user/uploadPhoto',
+  async (formData, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await axios.post('/user/photo', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

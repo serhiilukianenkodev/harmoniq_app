@@ -1,7 +1,17 @@
 import css from "./UploadForm.module.css";
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { uploadUserPhoto } from '../../redux/authors/operations';
+
 
 const UploadForm = ({ image, setImage, file, setFile }) => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+
+    const token = useSelector(state => state.auth.token);
+    console.log('TOKEN:', token);
+
     const handleImageChange = (e) => {
         const selectedFile = e.target.files[0];
         if (!selectedFile) return;
@@ -14,6 +24,42 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
 
         setFile(selectedFile);
     };
+
+
+    const handleSave = async () => {
+        if (!file) return;
+        setLoading(true);
+        setError(null);
+
+        try {
+            if (!token) {
+            setError('Токен авторизації відсутній. Будь ласка, увійдіть в систему.');
+            setLoading(false);
+            return;
+            }
+
+            const formData = new FormData();
+            formData.append('photo', file);
+
+            const result = await dispatch(uploadUserPhoto(formData)).unwrap();
+            console.log('Результат завантаження:', result);
+
+            if (result?.avatarUrl) {
+            console.log('Фото завантажено успішно:', result.avatarUrl);
+            } else {
+            setError('Щось пішло не так при завантаженні фото.');
+            }
+        } catch (err) {
+            console.error('Помилка при завантаженні фото:', err);
+            setError('Не вдалося завантажити фото.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    
+   
+
 
   return (
     <div className={css.containerUploadForm}>
@@ -38,11 +84,15 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
             </label>
 
             <button 
-            className={css.buttonUploadForm}
-            disabled={!file}
+                className={css.buttonUploadForm}
+                onClick={handleSave} // ⬅️ ЦЕ!
+                disabled={!file || loading}
             >
-                Save
+                {loading ? 'Saving...' : 'Save'}
             </button>
+
+         {error && <p className={css.errorMessage}>{error}</p>}
+
        </div>
     );
 };
