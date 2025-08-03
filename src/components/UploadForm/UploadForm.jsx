@@ -85,7 +85,7 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
 
             <button 
                 className={css.buttonUploadForm}
-                onClick={handleSave} // ⬅️ ЦЕ!
+                onClick={handleSave}
                 disabled={!file || loading}
             >
                 {loading ? 'Saving...' : 'Save'}
