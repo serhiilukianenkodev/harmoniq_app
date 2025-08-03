@@ -88,7 +88,7 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
                 onClick={handleSave}
                 disabled={!file || loading}
             >
-                {loading ? 'Saving...' : 'Save'}
+                Save
             </button>
 
          {error && <p className={css.errorMessage}>{error}</p>}
