@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
+import { uploadUserPhoto } from '../authors/operations.js';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -40,6 +41,9 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(uploadUserPhoto.fulfilled, (state, action) => {
+        state.user = action.payload.data;
       });
   },
 });

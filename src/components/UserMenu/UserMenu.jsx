@@ -29,8 +29,8 @@ const UserMenu = ({ variant = 'desktop' }) => {
           className={css.userInfo}
           onClick={() => setIsUploadModalOpen(true)}
         >
-          {user.avatarURL ? (
-            <img src={user.avatarURL} alt="avatar" className={css.avatar} />
+          {user.avatarUrl ? (
+            <img src={user.avatarUrl} alt="avatar" className={css.avatar} />
           ) : (
             <div className={css.avatarPlaceholder}>
               {user.name && user.name[0].toUpperCase()}
