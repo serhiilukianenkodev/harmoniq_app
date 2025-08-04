@@ -10,7 +10,7 @@ const ArticlesItem = ({ article }) => (
       <p className={styles.description}>{article.description}</p>
     </div>
     <div className={styles.footer}>
-      <a href={`/article/${article._id}`} className={styles.link}>
+      <a href={`/articles/${article._id}`} className={styles.link}>
         Learn more
       </a>
       <ButtonAddToBookmarks articleId={article.id} />
