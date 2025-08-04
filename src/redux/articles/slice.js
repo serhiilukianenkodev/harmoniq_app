@@ -1,12 +1,8 @@
-
-import { createSlice } from '@reduxjs/toolkit';
 import {
-  addArticle,
   fetchArticleById,
   fetchRecommendedArticles,
   saveArticleToBookmarks,
 } from './operations';
-import toast from 'react-hot-toast';
 
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 // import { fetchContacts, addContact, deleteContact } from "./operations";
@@ -17,7 +13,6 @@ import {
   fetchArticlesByAuthor,
   fetchSavedArticles,
 } from './operations';
-
 
 const slice = createSlice({
   name: 'articles',
@@ -58,6 +53,7 @@ const slice = createSlice({
       })
       .addCase(saveArticleToBookmarks.rejected, (state, action) => {
         toast.error('Failed to save bookmark: ' + action.payload);
+      })
 
       // .addCase(deleteContact.fulfilled, (state, action) => {
       //   const index = state.items.findIndex(
