@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../api/axios';
+import toast from 'react-hot-toast';
 
 export const fetchArticleById = createAsyncThunk(
   'articles/fetchById',
@@ -30,49 +31,6 @@ export const fetchRecommendedArticles = createAsyncThunk(
   }
 );
 
-export const saveArticleToBookmarks = createAsyncThunk(
-  'articles/saveBookmark',
-  async (articleId, thunkAPI) => {
-    try {
-      const { auth } = thunkAPI.getState();
-      const token = auth.token;
-
-      if (!token || !articleId) {
-        throw new Error('Token or article ID missing');
-      }
-
-      const response = await axios.patch(
-        `/authors/saved-articles/${articleId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      return response.data.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || error.message
-      );
-    }
-  }
-);
-
-// GET @ /contacts
-// export const fetchContacts = createAsyncThunk(
-//   "contacts/fetchAll",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get("/contacts");
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
-
 // POST @ /articles
 export const addArticle = createAsyncThunk(
   'articles/addArticle',
@@ -96,19 +54,6 @@ export const addArticle = createAsyncThunk(
     }
   }
 );
-
-// DELETE @ /contacts/:id
-// export const deleteContact = createAsyncThunk(
-//   "contacts/deleteContact",
-//   async (contactId, thunkAPI) => {
-//     try {
-//       const response = await axios.delete(`/contacts/${contactId}`);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
 
 export const fetchArticlesByAuthor = createAsyncThunk(
   'articles/fetchByAuthor',
@@ -148,8 +93,7 @@ export const addToSavedArticles = createAsyncThunk(
   async (articleId, thunkAPI) => {
     try {
       const response = await axios.post(`/authors/saved-articles/${articleId}`);
-      console.log('Article added to saved:', response.data);
-
+      toast.success('Article added to saved!');
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -161,10 +105,8 @@ export const deleteFromSavedArticles = createAsyncThunk(
   'articles/addToSaved',
   async (articleId, thunkAPI) => {
     try {
-      const response = await axios.delete(
-        `/authors/saved-articles/${articleId}`
-      );
-
+      await axios.delete(`/authors/saved-articles/${articleId}`);
+      toast.success('Article removed from saved!');
       return articleId;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

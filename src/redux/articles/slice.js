@@ -1,7 +1,7 @@
 import {
   fetchArticleById,
   fetchRecommendedArticles,
-  saveArticleToBookmarks,
+  // saveArticleToBookmarks,
 } from './operations';
 
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
@@ -47,13 +47,13 @@ const slice = createSlice({
       .addCase(fetchRecommendedArticles.fulfilled, (state, action) => {
         state.recommendations = action.payload;
       })
-      .addCase(saveArticleToBookmarks.fulfilled, (state, action) => {
-        state.bookmarkedIds.push(action.payload.articleId);
-        toast.success('Article saved to bookmarks!');
-      })
-      .addCase(saveArticleToBookmarks.rejected, (state, action) => {
-        toast.error('Failed to save bookmark: ' + action.payload);
-      })
+      // .addCase(saveArticleToBookmarks.fulfilled, (state, action) => {
+      //   state.bookmarkedIds.push(action.payload.articleId);
+      //   toast.success('Article saved to bookmarks!');
+      // })
+      // .addCase(saveArticleToBookmarks.rejected, (state, action) => {
+      //   toast.error('Failed to save bookmark: ' + action.payload);
+      // })
 
       // .addCase(deleteContact.fulfilled, (state, action) => {
       //   const index = state.items.findIndex(
