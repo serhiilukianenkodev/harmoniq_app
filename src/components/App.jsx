@@ -74,7 +74,17 @@ const App = () => {
                   component={<CreateArticlePage />}
                 />
               }
-            />
+              />
+            <Route
+              path="/create/:id"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<CreateArticlePage />}
+                />
+              }
+              /> 
+              
             <Route
               path="/profile"
               element={

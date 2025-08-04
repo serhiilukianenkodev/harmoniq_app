@@ -39,6 +39,49 @@ export const addArticle = createAsyncThunk(
   }
 );
 
+// GET @ /articles/:id
+export const getArticleById = createAsyncThunk(
+  "articles/getArticleById",
+  async (articleId, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await axios.get(`/articles/${articleId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data.data; 
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+// PATCH @ /articles/:id
+export const updateArticle = createAsyncThunk(
+  "articles/updateArticle",
+  async ({ id, formData }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await axios.patch(`/articles/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data; 
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 
 
 // DELETE @ /contacts/:id

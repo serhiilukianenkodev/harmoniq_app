@@ -2,12 +2,13 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 // import { fetchContacts, addContact, deleteContact } from "./operations";
 import { logOut } from "../auth/operations";
 import toast from "react-hot-toast";
-import { addArticle } from "./operations";
+import { addArticle, updateArticle } from "./operations";
 
 const slice = createSlice({
   name: "articles",
   initialState: {
     items: [],
+    currentArticle: null,
     loading: false,
     error: null,
   },
@@ -18,15 +19,17 @@ const slice = createSlice({
       // })
       .addCase(addArticle.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        toast.success("Article is added successfully!");
       })
-      // .addCase(deleteContact.fulfilled, (state, action) => {
-      //   const index = state.items.findIndex(
-      //     (contact) => contact.id === action.payload.id
-      //   );
-      //   state.items.splice(index, 1);
-      //   toast.success("Contact is delete successfully!");
-      // })
+      .addCase(updateArticle.fulfilled, (state, action) => {
+        const updated = action.payload;
+        const index = state.items.findIndex(article => article._id === updated._id);
+        if (index !== -1) {
+          state.items[index] = updated; 
+        } 
+        if (state.currentArticle?._id === updated._id) {
+          state.currentArticle = updated;         
+        }
+      })
       // .addCase(logOut.fulfilled, (state) => {
       //   state.items = [];
       // })
