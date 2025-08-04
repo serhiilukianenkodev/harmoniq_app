@@ -108,24 +108,6 @@
   }
 }
 
-/* .createBtn,
-  .userInfo,
-  .divider,
-  .logoutBtn {
-    display: none;
-  }
-
-  .modal .userInfo,
-  .modal .divider,
-  .modal .logoutBtn {
-    display: flex !important;
-    align-items: center;
-  }
-
-  .modal.wrapper {
-    justify-content: center;
-  } */
-
 @media (max-width: 767px) {
   .wrapper:not(.modal) .userInfo,
   .wrapper:not(.modal) .divider,

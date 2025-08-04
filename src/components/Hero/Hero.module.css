@@ -19,7 +19,6 @@
   pointer-events: none;
 }
 
-/* Retina-override */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .imageOverlay {
     background-image: url('/images/img-desc@2x.png');
@@ -163,9 +162,8 @@
   }
 }
 
-/* Retina TAB */
-@media (max-width: 1199px) and (-webkit-min-device-pixel-ratio: 2),
-  (max-width: 1199px) and (min-resolution: 192dpi) {
+@media (max-width: 1439px) and (-webkit-min-device-pixel-ratio: 2),
+  (max-width: 1439px) and (min-resolution: 192dpi) {
   .imageOverlay {
     background-image: url('/images/img-tab@2x.png');
   }
@@ -229,7 +227,6 @@
   }
 }
 
-/* Retina TAB */
 @media (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2),
   (max-width: 767px) and (min-resolution: 192dpi) {
   .imageOverlay {
