@@ -24,3 +24,5 @@ export const selectBookmarkedIds = state => state.articles.bookmarkedIds;
 //       );
 //     })
 // );
+
+export const selectTotalPages = (state) => state.articles.totalPages;

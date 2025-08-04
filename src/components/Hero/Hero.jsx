@@ -1,8 +1,12 @@
 import styles from './Hero.module.css';
 import { Link } from 'react-router-dom';
 import Container from '../Container/Container';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 export default function Hero() {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <section className={styles.hero}>
       <div className={styles.imageOverlay}></div>
@@ -13,12 +17,15 @@ export default function Hero() {
         </h1>
 
         <div className={styles.buttons}>
-          <a href="#popular" className={styles.filledBtn}>
+          <a href="#PopularArticles" className={styles.filledBtn}>
             Go to Articles
           </a>
-          <Link to="/register" className={styles.outlineBtn}>
-            Register
-          </Link>
+
+          {!isLoggedIn && (
+            <Link to="/register" className={styles.outlineBtn}>
+              Register
+            </Link>
+          )}
         </div>
       </div>
     </section>

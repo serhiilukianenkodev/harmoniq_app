@@ -110,3 +110,40 @@ export const addArticle = createAsyncThunk(
 //     }
 //   }
 // );
+
+export const fetchArticlesByAuthor = createAsyncThunk(
+  'articles/fetchByAuthor',
+  async ({ authorId, page = 1 }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `/authors/${authorId}/articles?page=${page}`
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const fetchSavedArticles = createAsyncThunk(
+  'articles/fetchSaved',
+  async ({ page = 1 }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+      const response = await axios.get(`/saved`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: { page },
+      });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const clearArticles = createAsyncThunk('articles/clear', async () => {
+  return [];
+});
