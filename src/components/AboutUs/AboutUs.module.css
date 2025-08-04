@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .about-us-section {
-  margin: 36px 0;
+  margin-bottom: 72px;
   background-color: var(--color-white);
   font-family: var(--font-manrope);
 }

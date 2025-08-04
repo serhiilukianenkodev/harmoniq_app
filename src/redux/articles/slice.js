@@ -1,24 +1,29 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 // import { fetchContacts, addContact, deleteContact } from "./operations";
-import { logOut } from "../auth/operations";
-import toast from "react-hot-toast";
-import { addArticle } from "./operations";
+import { logOut } from '../auth/operations';
+import toast from 'react-hot-toast';
+import {
+  addArticle,
+  fetchArticlesByAuthor,
+  fetchSavedArticles,
+} from './operations';
 
 const slice = createSlice({
-  name: "articles",
+  name: 'articles',
   initialState: {
     items: [],
+    totalPages: 0,
     loading: false,
     error: null,
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       // .addCase(fetchContacts.fulfilled, (state, action) => {
       //   state.items = action.payload;
       // })
       .addCase(addArticle.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        toast.success("Article is added successfully!");
+        toast.success('Article is added successfully!');
       })
       // .addCase(deleteContact.fulfilled, (state, action) => {
       //   const index = state.items.findIndex(
@@ -66,6 +71,28 @@ const slice = createSlice({
       //     state.error = null;
       //   }
       // );
+      .addCase(fetchArticlesByAuthor.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchArticlesByAuthor.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.items = action.payload.articles;
+        state.totalPages = action.payload.totalPages;
+      })
+      .addCase(fetchArticlesByAuthor.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchSavedArticles.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.items = action.payload.articles;
+        state.totalPages = action.payload.totalPages;
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.items = [];
+      });
   },
 });
 

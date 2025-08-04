@@ -17,3 +17,5 @@ export const selectLoading = (state) => state.articles.loading;
 //       );
 //     })
 // );
+
+export const selectTotalPages = (state) => state.articles.totalPages;
