@@ -56,18 +56,80 @@
   cursor: pointer;
 }
 
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  position: relative;
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.closeUpload {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #374f42;
+}
+
 @media (min-width: 768px) and (max-width: 1439px) {
   .userInfo,
   .divider,
   .logoutBtn {
     display: none;
   }
+
+  .modal .userInfo,
+  .modal .divider,
+  .modal .logoutBtn {
+    display: flex !important;
+  }
+
+  .modal .wrapper {
+    justify-content: center;
+  }
 }
-@media (max-width: 767px) {
-  .createBtn,
+
+/* .createBtn,
   .userInfo,
   .divider,
   .logoutBtn {
+    display: none;
+  }
+
+  .modal .userInfo,
+  .modal .divider,
+  .modal .logoutBtn {
+    display: flex !important;
+    align-items: center;
+  }
+
+  .modal.wrapper {
+    justify-content: center;
+  } */
+
+@media (max-width: 767px) {
+  .wrapper:not(.modal) .userInfo,
+  .wrapper:not(.modal) .divider,
+  .wrapper:not(.modal) .logoutBtn {
     display: none;
   }
 }

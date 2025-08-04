@@ -76,7 +76,11 @@ const Header = () => {
 
               <button className={css.burger} onClick={toggleBurger}>
                 <svg width="32" height="32">
-                  <use href="/icons/sprite.svg#burger" />
+                  <use
+                    href={`/icons/sprite.svg#${
+                      isBurgerOpen ? 'close-small' : 'burger'
+                    }`}
+                  />
                 </svg>
               </button>
             </div>
