@@ -31,7 +31,7 @@ const ModalErrorSave = ({ isOpen, onClose }) => {
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <button
-          className={css.closeBtn}
+          className={styles.closeButton}
           onClick={onClose}
           aria-label="Close modal"
         >
@@ -40,16 +40,23 @@ const ModalErrorSave = ({ isOpen, onClose }) => {
           </svg>
         </button>
         <h2 className={styles.title}>Error while saving</h2>
+        <p className={styles.message}>You need to authorize first!</p>
         <div className={styles.buttonContainer}>
           <button
             className={styles.loginButton}
-            onClick={() => navigate('/login')}
+            onClick={() => {
+              navigate('/login');
+              onClose();
+            }}
           >
             Login
           </button>
           <button
             className={styles.registerButton}
-            onClick={() => navigate('/register')}
+            onClick={() => {
+              navigate('/register');
+              onClose();
+            }}
           >
             Register
           </button>
