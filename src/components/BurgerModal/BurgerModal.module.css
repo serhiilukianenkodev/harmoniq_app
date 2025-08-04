@@ -10,7 +10,7 @@
 @media (max-width: 767px) {
   .overlay {
     position: absolute;
-    top: 74px;
+    top: 0;
     left: 0;
     width: 100%;
     background-color: #d3e1d9;
@@ -20,7 +20,9 @@
     flex-direction: column;
     align-items: center;
   }
-
+  .backdrop {
+    top: 74px;
+  }
   .userWrapper {
     margin-top: 32px;
     display: flex;

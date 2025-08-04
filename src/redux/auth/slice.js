@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
 import { uploadUserPhoto } from '../authors/operations.js';
+import { addToSavedArticles } from '../articles/operations.js';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -12,6 +13,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isFetching: false,
   },
   extraReducers: builder => {
     builder
@@ -44,6 +46,16 @@ const authSlice = createSlice({
       })
       .addCase(uploadUserPhoto.fulfilled, (state, action) => {
         state.user = action.payload.data;
+      })
+      .addCase(addToSavedArticles.pending, (state, action) => {
+        state.isFetching = true;
+      })
+      .addCase(addToSavedArticles.fulfilled, (state, action) => {
+        state.user.savedArticles = action.payload.data;
+        state.isFetching = false;
+      })
+      .addCase(addToSavedArticles.rejected, (state, action) => {
+        state.isFetching = false;
       });
   },
 });

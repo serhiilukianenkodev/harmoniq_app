@@ -84,6 +84,35 @@ export const fetchSavedArticles = createAsyncThunk(
   }
 );
 
+export const addToSavedArticles = createAsyncThunk(
+  'articles/addToSaved',
+  async (articleId, thunkAPI) => {
+    try {
+      const response = await axios.post(`/authors/saved-articles/${articleId}`);
+      console.log('Article added to saved:', response.data);
+
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const deleteFromSavedArticles = createAsyncThunk(
+  'articles/addToSaved',
+  async (articleId, thunkAPI) => {
+    try {
+      const response = await axios.delete(
+        `/authors/saved-articles/${articleId}`
+      );
+
+      return articleId;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const clearArticles = createAsyncThunk('articles/clear', async () => {
   return [];
 });

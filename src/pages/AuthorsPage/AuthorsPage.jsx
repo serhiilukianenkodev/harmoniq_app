@@ -1,7 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthors } from '../../redux/authors/operations';
-import { selectAuthors, selectIsLoading, selectHasMore, selectError } from '../../redux/authors/selectors';
+import {
+  selectAuthors,
+  selectIsLoading,
+  selectHasMore,
+  selectError,
+} from '../../redux/authors/selectors';
 import AuthorsList from '../../components/Authors/AuthorsList/AuthorsList';
 import styles from './AuthorsPage.module.css';
 
@@ -19,15 +24,21 @@ const AuthorsPage = () => {
     }
   }, [dispatch, authors.length]);
 
-  const handleLoadMore = (e) => {
+  const handleLoadMore = e => {
     e.preventDefault();
     const currentLength = authors.length;
     const nextPage = Math.ceil(currentLength / 20) + 1;
     dispatch(fetchAuthors({ page: nextPage, perPage: 20 }));
     setTimeout(() => {
-      const newElement = listRef.current?.querySelector(`li:nth-child(${currentLength + 1})`);
+      const newElement = listRef.current?.querySelector(
+        `li:nth-child(${currentLength + 1})`
+      );
       if (newElement) {
-        newElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        newElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        });
       }
     }, 500);
   };
@@ -36,7 +47,6 @@ const AuthorsPage = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>Authors</h1>
       {error && <p className={styles.error}>Error: {error}</p>}
-      {isLoading && authors.length === 0 && <p className={styles.loading}>Loading...</p>}
       <AuthorsList authors={authors} isLoading={isLoading} ref={listRef} />
       <button
         type="button"

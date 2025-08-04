@@ -25,7 +25,7 @@ const ArticlesItem = ({ article }) => {
         <Link to={`/articles/${article._id}`} className={styles.link}>
           Learn more
         </Link>
-        <ButtonAddToBookmarks articleId={article.id} />
+        <ButtonAddToBookmarks articleId={article._id} />
       </div>
     </li>
   );

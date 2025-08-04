@@ -1,13 +1,22 @@
-import { useState } from "react";
-import ModalErrorSave from "../ModalErrorSave/ModalErrorSave";
-import { BookmarkIcon } from "./BookmarkIcon";
-import styles from "./ButtonAddToBookmarks.module.css";
+import { useState } from 'react';
+import ModalErrorSave from '../ModalErrorSave/ModalErrorSave';
+import { BookmarkIcon } from './BookmarkIcon';
+import styles from './ButtonAddToBookmarks.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToSavedArticles,
+  deleteFromSavedArticles,
+} from '../../redux/articles/operations.js';
+import { selectSavedArticles } from '../../redux/auth/selectors.js';
 
 const ButtonAddToBookmarks = ({ articleId }) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const isBookmarked = useSelector(selectSavedArticles).find(
+    id => id === articleId
+  );
+  // const [isBookmarked, setIsBookmarked] = useState(false);
+  const isLoading = useSelector(state => state.auth.isFetching);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const dispatch = useDispatch();
   const isAuthenticated = true;
 
   const handleBookmark = async () => {
@@ -16,14 +25,14 @@ const ButtonAddToBookmarks = ({ articleId }) => {
       return;
     }
 
-    setIsLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setIsBookmarked(!isBookmarked);
+      if (isBookmarked) {
+        dispatch(deleteFromSavedArticles(articleId));
+      } else {
+        dispatch(addToSavedArticles(articleId));
+      }
     } catch (error) {
-      console.error("Error saving bookmark:", error);
-    } finally {
-      setIsLoading(false);
+      console.error('Error saving bookmark:', error);
     }
   };
 
@@ -36,7 +45,7 @@ const ButtonAddToBookmarks = ({ articleId }) => {
         }`}
         disabled={isLoading}
       >
-        {isLoading ? "..." : <BookmarkIcon />}
+        {isLoading ? '...' : <BookmarkIcon />}
       </button>
       <ModalErrorSave
         isOpen={isModalOpen}
