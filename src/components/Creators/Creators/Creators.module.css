@@ -1,6 +1,5 @@
 .creators {
-  padding-top: 36px;
-  padding-bottom: 36px;
+  margin-bottom: 72px;
 }
 
 .creatorsTitle {
@@ -33,18 +32,17 @@
   .creatorsTitle {
     font-size: 32px;
   }
-
-  .creatorsLink {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 1440px) {
   .creatorsTop {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+  /* .creatorsLink {
+    display: none;
+  } */
+}
+
+@media only screen and (min-width: 1440px) {
   .creatorsTitle {
     font-size: 40px;
   }
