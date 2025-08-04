@@ -19,6 +19,7 @@
   border-radius: 256px;
   gap: 4px;
   object-fit: cover;
+  cursor: pointer;
   background: url(<path-to-image>) lightgray 50% / cover no-repeat;
 }
 

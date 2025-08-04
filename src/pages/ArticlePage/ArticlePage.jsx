@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import {
+  addToSavedArticles,
+  deleteFromSavedArticles,
   fetchArticleById,
   fetchRecommendedArticles,
-  saveArticleToBookmarks,
 } from '../../redux/articles/operations.js';
 import {
   selectCurrentArticle,
@@ -14,9 +15,21 @@ import {
 import css from './ArticlePage.module.css';
 import Loader from '../../components/Loader/Loader.jsx';
 import NoArticles from '../../components/NoArticles/NoArticles.jsx';
+import {
+  selectIsLoggedIn,
+  selectSavedArticles,
+} from '../../redux/auth/selectors.js';
+import ModalErrorSave from '../../components/ModalErrorSave/ModalErrorSave.jsx';
 
 const ArticlePage = () => {
-  const { id } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { id: articleId } = useParams();
+  const isBookmarked = useSelector(selectSavedArticles).find(
+    id => id === articleId
+  );
+  const isSaving = useSelector(state => state.auth.isFetching);
+
+  const isAuthenticated = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
   const article = useSelector(selectCurrentArticle);
@@ -24,22 +37,29 @@ const ArticlePage = () => {
   const loading = useSelector(selectArticlesLoading);
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchArticleById(id));
-      dispatch(fetchRecommendedArticles({ excludeId: id, perPage: 10 }));
+    if (articleId) {
+      dispatch(fetchArticleById(articleId));
+      dispatch(fetchRecommendedArticles({ excludeId: articleId, perPage: 10 }));
     }
-  }, [dispatch, id]);
+  }, [dispatch, articleId]);
 
-  // console.log(id);
-
-  const handleSave = () => dispatch(saveArticleToBookmarks(id));
+  const handleSave = () => {
+    if (!isAuthenticated) {
+      setIsModalOpen(true);
+      return;
+    }
+    if (isBookmarked) {
+      dispatch(deleteFromSavedArticles(articleId));
+    } else {
+      dispatch(addToSavedArticles(articleId));
+    }
+  };
 
   if (loading) return <Loader />;
   if (!article) return <NoArticles />;
 
   const { title, img, desc, ownerName, date } = article;
-  // console.log(desc);
-  // console.log(title);
+
   return (
     <div className={css.page}>
       <h2 className={css.title}>{title}</h2>
@@ -96,7 +116,8 @@ const ArticlePage = () => {
           </div>
           <div>
             <button className={css.saveBtn} onClick={handleSave}>
-              Save
+              {isBookmarked ? 'Unsave' : 'Save'}
+              {isSaving && <span className={css.loading}>...</span>}
               <svg
                 className={css.btnIcon}
                 width={24}
@@ -109,6 +130,10 @@ const ArticlePage = () => {
           </div>
         </div>
       </div>
+      <ModalErrorSave
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
