@@ -36,7 +36,7 @@
   color: var(--White, #f7fffb);
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1439px) {
   .link {
     display: none;
   }
@@ -48,7 +48,7 @@
   }
 }
 
-@media (min-width: 393px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .link {
     display: none;
   }
