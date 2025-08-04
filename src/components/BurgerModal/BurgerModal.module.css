@@ -1,0 +1,151 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 999;
+}
+@media (max-width: 767px) {
+  .overlay {
+    position: absolute;
+    top: 74px;
+    left: 0;
+    width: 100%;
+    background-color: #d3e1d9;
+    z-index: 1000;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userWrapper {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .menuNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .menuNav a {
+    color: #374f42;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .menuNav .joinBtn {
+    display: inline-flex;
+    background: #649179;
+    color: #f7fffb;
+    border-radius: 64px;
+    padding: 12px 16px;
+    transition: background-color 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    text-decoration: none;
+    width: 100px;
+    height: 45px;
+  }
+
+  .menuNav .joinBtn:hover {
+    background: var(--Green-Darker, #374f42);
+    color: var(--White, #f7fffb);
+  }
+
+  .menuNav .joinBtn:focus {
+    background: var(--Green, #649179);
+    box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgba(78, 70, 180, 0.12);
+    outline: none;
+    color: var(--White, #f7fffb);
+  }
+
+  .createWrapper {
+    margin: 32px 0;
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .createBtn {
+    padding: 12px 16px;
+    background-color: #4a756a;
+    color: #fff;
+    border: none;
+    border-radius: 64px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Manrope', sans-serif;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .createBtn:hover {
+    background-color: #3a5e54;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .createBtn {
+    display: none;
+  }
+
+  .joinBtn {
+    display: none;
+  }
+  .overlay {
+    position: absolute;
+    top: 74px;
+    left: 0;
+    width: 100%;
+    background-color: #d3e1d9;
+    z-index: 1000;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menuNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .menuNav a {
+    color: #374f42;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .userWrapper {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .overlay {
+    display: none;
+  }
+}

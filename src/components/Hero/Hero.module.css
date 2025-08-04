@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   margin-top: 48px;
-  min-height: 700px;
+  min-height: 570px;
   overflow: hidden;
 }
 
@@ -19,7 +19,6 @@
   pointer-events: none;
 }
 
-/* Retina-override */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .imageOverlay {
     background-image: url('/images/img-desc@2x.png');
@@ -110,7 +109,7 @@
 }
 /* ******* TABLET ***********/
 
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1439px) {
   .hero {
     min-height: 427px;
     margin-top: 22px;
@@ -131,7 +130,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 434px;
     height: 383px;
   }
@@ -163,9 +162,8 @@
   }
 }
 
-/* Retina TAB */
-@media (max-width: 1199px) and (-webkit-min-device-pixel-ratio: 2),
-  (max-width: 1199px) and (min-resolution: 192dpi) {
+@media (max-width: 1439px) and (-webkit-min-device-pixel-ratio: 2),
+  (max-width: 1439px) and (min-resolution: 192dpi) {
   .imageOverlay {
     background-image: url('/images/img-tab@2x.png');
   }
@@ -229,10 +227,17 @@
   }
 }
 
-/* Retina TAB */
 @media (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2),
   (max-width: 767px) and (min-resolution: 192dpi) {
   .imageOverlay {
     background-image: url('/images/img-mob@2x.png');
+  }
+}
+
+@media (max-width: 392px) {
+  .imageOverlay,
+  .content {
+    background-size: contain;
+    width: 100%;
   }
 }
