@@ -43,6 +43,18 @@ export const fetchAuthors = createAsyncThunk(
   }
 );
 
+export const fetchAuthorById = createAsyncThunk(
+  'authors/fetchById',
+  async (authorId, thunkAPI) => {
+    try {
+      const response = await axios.get(`/authors/${authorId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
+
 // POST /user/photo
 export const uploadUserPhoto = createAsyncThunk(
   'user/uploadPhoto',
