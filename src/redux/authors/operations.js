@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://harmoniq-backend-qo0h.onrender.com';
+axios.defaults.withCredentials = true;
 
 export const fetchTopCreators = createAsyncThunk(
   'authors/fetchTopCreators',
@@ -38,6 +39,28 @@ export const fetchAuthors = createAsyncThunk(
       return { authors, total };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
+
+// POST /user/photo
+export const uploadUserPhoto = createAsyncThunk(
+  'user/uploadPhoto',
+  async (formData, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await axios.post('/user/photo', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
