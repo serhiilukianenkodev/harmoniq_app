@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ButtonAddToBookmarks from '../ButtonAddToBookmarks/ButtonAddToBookmarks';
 import styles from './ArticlesItem.module.css';
 
@@ -21,9 +22,9 @@ const ArticlesItem = ({ article }) => {
         </div>
       </div>
       <div className={styles.footer}>
-        <a href={`/article/${article._id}`} className={styles.link}>
+        <Link to={`/articles/${article._id}`} className={styles.link}>
           Learn more
-        </a>
+        </Link>
         <ButtonAddToBookmarks articleId={article.id} />
       </div>
     </li>

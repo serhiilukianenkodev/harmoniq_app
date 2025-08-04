@@ -1,7 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://harmoniq-backend-qo0h.onrender.com";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from '../../api/axios';
 
 // GET @ /contacts
 // export const fetchContacts = createAsyncThunk(
@@ -18,18 +16,18 @@ axios.defaults.baseURL = "https://harmoniq-backend-qo0h.onrender.com";
 
 // POST @ /articles
 export const addArticle = createAsyncThunk(
-  "articles/addArticle",
+  'articles/addArticle',
   async (article, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      const token = state.auth.token; 
+      // const state = thunkAPI.getState();
+      // const token = state.auth.token;
 
-      console.log("Token in thunk:", token);
+      // console.log("Token in thunk:", token);
 
-      const response = await axios.post("/articles", article, {
+      const response = await axios.post('/articles', article, {
         headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+          // Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
@@ -38,8 +36,6 @@ export const addArticle = createAsyncThunk(
     }
   }
 );
-
-
 
 // DELETE @ /contacts/:id
 // export const deleteContact = createAsyncThunk(

@@ -1,8 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://harmoniq-backend-qo0h.onrender.com';
-axios.defaults.withCredentials = true;
+import axios from '../../api/axios';
 
 export const fetchTopCreators = createAsyncThunk(
   'authors/fetchTopCreators',
@@ -49,12 +46,12 @@ export const uploadUserPhoto = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-      const token = state.auth.token;
+      // const token = state.auth.token;
 
       const response = await axios.post('/user/photo', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       });
 
