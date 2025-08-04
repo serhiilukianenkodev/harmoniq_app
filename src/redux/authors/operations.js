@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://harmoniq-backend-qo0h.onrender.com';
+axios.defaults.withCredentials = true;
 
 export const fetchTopCreators = async () => {
   try {
