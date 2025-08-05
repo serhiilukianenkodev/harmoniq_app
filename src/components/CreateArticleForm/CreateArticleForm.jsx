@@ -1,9 +1,8 @@
 import { addArticle, updateArticle } from "../../redux/articles/operations";
 import { getArticleById } from "../../redux/articles/operations";
-// import TiptapEditor from "../TiptapEditor/TiptapEditor";
+import RichTextEditor from "../RichTextEditor/RichTextEditor";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
@@ -47,7 +46,7 @@ const CreateArticleForm = ({articleId}) => {
         .then((data) => {
           setInitialValues({
             title: data.title,
-            desc: data.desc,
+            desc: data.desc.replace(/\/n/g, "\n"),
             photo: data.img, 
           });
         })
@@ -157,25 +156,20 @@ const CreateArticleForm = ({articleId}) => {
           </div>
           
         <div className={css.txtareaWrapper}>
-          <label>
+          <label htmlFor="descEditor">
             <Field name="desc">
-              {({ field, meta }) => (               
-                <textarea               
-                  {...field}                  
-                  type="text"                  
+              {({ field, form, meta }) => (
+                <RichTextEditor
+                  id="descEditor"
+                  value={field.value}
+                  onChange={(val) => form.setFieldValue(field.name, val)}
                   className={`${css.txtarea} ${meta.touched && meta.error ? css.errorField : ""}`}
-                  placeholder="Enter a text"
-                  onInput={(e) => {
-                    e.target.style.height = "auto"; 
-                    e.target.style.height = e.target.scrollHeight + "px"; 
-                  }}
-                />                
-              )}              
-            </Field> 
+                />
+              )}
+            </Field>
             <ErrorMessage name="desc" className={css.error} component="div" />
             </label>
         </div>
-
 
           <button className={css.createBtn} type="submit">
             {isEdit ? "Save changes" : "Publish Article"}
