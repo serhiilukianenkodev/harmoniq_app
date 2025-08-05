@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { ArticlesList } from "../../components/ArticlesList/ArticlesList";
-import CustomSelect from "../../components/CustomSelect/CustomSelect";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import styles from "./ArticlesPage.module.css";
+import { ArticlesList } from '../../components/ArticlesList/ArticlesList';
+import CustomSelect from '../../components/CustomSelect/CustomSelect';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import styles from './ArticlesPage.module.css';
 
 const ArticlesPage = () => {
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(1);
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState('All');
   const [totalArticles, setTotalArticles] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
@@ -18,26 +18,26 @@ const ArticlesPage = () => {
   const fetchArticles = async (reset = false) => {
     setIsLoading(true);
     try {
-      const currentPage = reset ? 1 : page;
+      const currentPage = reset ? 1 : page + 1;
       const queryParams = new URLSearchParams({
         page: currentPage,
         perPage: articlesPerPage,
-        ...(filter !== "All" && { filter }),
+        ...(filter !== 'All' && { filter }),
       });
 
       const response = await fetch(
         `https://harmoniq-backend-qo0h.onrender.com/articles?${queryParams}`,
         {
-          method: "GET",
+          method: 'GET',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       );
 
       if (!response.ok) {
         if (response.status === 401)
-          throw new Error("Unauthorized: Access token expired");
+          throw new Error('Unauthorized: Access token expired');
 
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -45,23 +45,23 @@ const ArticlesPage = () => {
       const result = await response.json();
 
       if (result.status !== 200)
-        throw new Error(result.message || "Failed to fetch articles");
+        throw new Error(result.message || 'Failed to fetch articles');
 
       const { articles, totalItems, hasNextPage } = result.data;
 
-      setArticles((prev) => (reset ? articles : [...prev, ...articles]));
+      setArticles(prev => (reset ? articles : [...prev, ...articles]));
       setTotalArticles(totalItems);
       setHasMore(hasNextPage);
 
       if (reset) {
         setPage(1);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
-      console.error("Error fetching articles:", error.message);
-      if (error.message.includes("Unauthorized")) {
-        alert("Your session has expired. Please log in again.");
-        window.location.href = "/login";
+      console.error('Error fetching articles:', error.message);
+      if (error.message.includes('Unauthorized')) {
+        alert('Your session has expired. Please log in again.');
+        window.location.href = '/login';
       }
     } finally {
       setIsLoading(false);
@@ -74,11 +74,11 @@ const ArticlesPage = () => {
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
-    setPage(nextPage);
+    setPage(page => page + 1);
     fetchArticles(false);
   };
 
-  const handleFilterChange = (newFilter) => {
+  const handleFilterChange = newFilter => {
     if (newFilter !== filter) {
       setFilter(newFilter);
       setArticles([]);
@@ -92,9 +92,9 @@ const ArticlesPage = () => {
         <p className={styles.count}>{totalArticles} articles</p>
         <div className={styles.filters}>
           <CustomSelect
-            options={["All", "Popular"]}
+            options={['All', 'Popular']}
             defaultSelected={filter}
-            onChange={(value) => handleFilterChange(value)}
+            onChange={value => handleFilterChange(value)}
           />
         </div>
       </div>
@@ -108,7 +108,7 @@ const ArticlesPage = () => {
             disabled={isLoading}
             className={styles.loadMore}
           >
-            {isLoading ? "Loading..." : "Load More"}
+            {isLoading ? 'Loading...' : 'Load More'}
           </button>
         </div>
       )}
