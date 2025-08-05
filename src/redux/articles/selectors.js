@@ -11,7 +11,11 @@ export const selectArticlesLoading = state => state.articles.loading;
 export const selectArticlesError = state => state.articles.error;
 
 export const selectBookmarkedIds = state => state.articles.bookmarkedIds;
-
+export const selectAuthorsArticles = state => state.articles.authorsArticles;
+export const selectUsersSavedArticles = state =>
+  state.articles.usersSavedArticles;
+export const selectisArticleEditable = state =>
+  state.articles.isArticleEditable;
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],
 //   (contacts, filter) =>
@@ -25,4 +29,4 @@ export const selectBookmarkedIds = state => state.articles.bookmarkedIds;
 //     })
 // );
 
-export const selectTotalPages = (state) => state.articles.totalPages;
+export const selectTotalPages = state => state.articles.totalPages;

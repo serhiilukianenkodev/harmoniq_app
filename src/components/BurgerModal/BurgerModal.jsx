@@ -9,11 +9,22 @@ const BurgerModal = ({ isOpen, onClose }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    const handleEsc = event => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+
     return () => {
+      document.removeEventListener('keydown', handleEsc);
       document.body.style.overflow = '';
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

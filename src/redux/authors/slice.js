@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAuthors, fetchTopCreators } from './operations';
+import { fetchAuthorById, fetchAuthors, fetchTopCreators } from './operations';
 
 const authorsSlice = createSlice({
   name: 'authors',
@@ -9,6 +9,7 @@ const authorsSlice = createSlice({
     isLoading: false,
     hasMore: true,
     error: null,
+    author: null,
   },
   reducers: {
     resetAuthors: state => {
@@ -58,6 +59,9 @@ const authorsSlice = createSlice({
       .addCase(fetchTopCreators.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchAuthorById.fulfilled, (state, action) => {
+        state.author = action.payload;
       });
   },
 });

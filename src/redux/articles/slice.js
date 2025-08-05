@@ -1,6 +1,8 @@
 import {
   fetchArticleById,
   fetchRecommendedArticles,
+  getAuthorsArticles,
+  getUsersSavedArticles,
   // saveArticleToBookmarks,
 } from './operations';
 
@@ -24,6 +26,14 @@ const slice = createSlice({
     loading: false,
     error: null,
     bookmarkedIds: [],
+    authorsArticles: [],
+    usersSavedArticles: [],
+    isArticleEditable: false,
+  },
+  reducers: {
+    changeIsArticleEditable(state, action) {
+      state.isArticleEditable = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -55,60 +65,6 @@ const slice = createSlice({
       .addCase(fetchRecommendedArticles.fulfilled, (state, action) => {
         state.recommendations = action.payload;
       })
-      // .addCase(saveArticleToBookmarks.fulfilled, (state, action) => {
-      //   state.bookmarkedIds.push(action.payload.articleId);
-      //   toast.success('Article saved to bookmarks!');
-      // })
-      // .addCase(saveArticleToBookmarks.rejected, (state, action) => {
-      //   toast.error('Failed to save bookmark: ' + action.payload);
-      // })
-
-      // .addCase(deleteContact.fulfilled, (state, action) => {
-      //   const index = state.items.findIndex(
-      //     (contact) => contact.id === action.payload.id
-      //   );
-      //   state.items.splice(index, 1);
-      //   toast.success("Contact is delete successfully!");
-      // })
-      // .addCase(logOut.fulfilled, (state) => {
-      //   state.items = [];
-      // })
-      // .addMatcher(
-      //   isAnyOf(
-      //     fetchContacts.pending,
-      //     addContact.pending,
-      //     deleteContact.pending
-      //   ),
-      //   (state) => {
-      //     state.loading = true;
-      //   }
-      // )
-      // .addMatcher(
-      //   isAnyOf(
-      //     fetchContacts.rejected,
-      //     addContact.rejected,
-      //     deleteContact.rejected
-      //   ),
-      //   (state, action) => {
-      //     state.loading = false;
-      //     state.error = action.payload;
-      //     toast.error(
-      //       "Something went wrong. Please try again. Error: " + action.payload
-      //     );
-      //   }
-      // )
-      // .addMatcher(
-      //   isAnyOf(
-      //     fetchContacts.fulfilled,
-      //     addContact.fulfilled,
-      //     deleteContact.fulfilled,
-      //     logOut.fulfilled
-      //   ),
-      //   (state) => {
-      //     state.loading = false;
-      //     state.error = null;
-      //   }
-      // );
       .addCase(fetchArticlesByAuthor.pending, state => {
         state.loading = true;
       })
@@ -122,16 +78,23 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(fetchSavedArticles.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        state.items = action.payload.articles;
-        state.totalPages = action.payload.totalPages;
-      })
+      // .addCase(fetchSavedArticles.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.error = null;
+      //   state.items = action.payload.articles;
+      //   state.totalPages = action.payload.totalPages;
+      // })
       .addCase(logOut.fulfilled, state => {
         state.items = [];
+      })
+      .addCase(getUsersSavedArticles.fulfilled, (state, action) => {
+        state.usersSavedArticles = action.payload.data;
+      })
+      .addCase(getAuthorsArticles.fulfilled, (state, action) => {
+        state.authorsArticles = action.payload.articles;
       });
   },
 });
 
 export const articlesReducer = slice.reducer;
+export const { changeIsArticleEditable } = slice.actions;

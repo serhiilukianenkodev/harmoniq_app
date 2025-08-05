@@ -1,6 +1,7 @@
 .hero {
   position: relative;
   margin-top: 48px;
+  margin-bottom: 72px;
   min-height: 570px;
   overflow: hidden;
 }
