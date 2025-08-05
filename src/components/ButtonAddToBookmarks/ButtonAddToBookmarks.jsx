@@ -7,17 +7,20 @@ import {
   addToSavedArticles,
   deleteFromSavedArticles,
 } from '../../redux/articles/operations.js';
-import { selectSavedArticles } from '../../redux/auth/selectors.js';
+import {
+  selectIsLoggedIn,
+  selectSavedArticles,
+} from '../../redux/auth/selectors.js';
 
 const ButtonAddToBookmarks = ({ articleId }) => {
   const isBookmarked = useSelector(selectSavedArticles).find(
     id => id === articleId
   );
-  // const [isBookmarked, setIsBookmarked] = useState(false);
+  const isAuthenticated = useSelector(selectIsLoggedIn);
+
   const isLoading = useSelector(state => state.auth.isFetching);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const isAuthenticated = true;
 
   const handleBookmark = async () => {
     if (!isAuthenticated) {
