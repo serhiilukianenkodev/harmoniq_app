@@ -7,13 +7,13 @@ import {
 } from './operations';
 
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast';
 import { logOut } from '../auth/operations';
 import {
   addArticle,
   fetchArticlesByAuthor,
   fetchSavedArticles,
-  updateArticle
+  updateArticle,
 } from './operations';
 
 const slice = createSlice({
@@ -42,12 +42,14 @@ const slice = createSlice({
       })
       .addCase(updateArticle.fulfilled, (state, action) => {
         const updated = action.payload;
-        const index = state.items.findIndex(article => article._id === updated._id);
+        const index = state.items.findIndex(
+          article => article._id === updated._id
+        );
         if (index !== -1) {
-          state.items[index] = updated; 
-        } 
+          state.items[index] = updated;
+        }
         if (state.currentArticle?._id === updated._id) {
-          state.currentArticle = updated;         
+          state.currentArticle = updated;
         }
       })
       .addCase(fetchArticleById.pending, state => {
@@ -88,7 +90,7 @@ const slice = createSlice({
         state.items = [];
       })
       .addCase(getUsersSavedArticles.fulfilled, (state, action) => {
-        state.usersSavedArticles = action.payload.data;
+        state.usersSavedArticles = action.payload.articles;
       })
       .addCase(getAuthorsArticles.fulfilled, (state, action) => {
         state.authorsArticles = action.payload.articles;
