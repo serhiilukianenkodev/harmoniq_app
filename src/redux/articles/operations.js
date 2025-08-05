@@ -126,6 +126,19 @@ export const getAuthorsArticles = createAsyncThunk(
   }
 );
 
+export const getUsersSavedArticles = createAsyncThunk(
+  'articles/usersSavedArticles',
+  async ({ authorId, page }, thunkAPI) => {
+    try {
+      const data = await axios.get(`/authors/saved-articles`);
+      console.log('🚀 ~ data:', data);
+      return data.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const clearArticles = createAsyncThunk('articles/clear', async () => {
   return [];
 });

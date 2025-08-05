@@ -2,6 +2,7 @@ import {
   fetchArticleById,
   fetchRecommendedArticles,
   getAuthorsArticles,
+  getUsersSavedArticles,
   // saveArticleToBookmarks,
 } from './operations';
 
@@ -26,6 +27,7 @@ const slice = createSlice({
     error: null,
     bookmarkedIds: [],
     authorsArticles: [],
+    usersSavedArticles: [],
   },
   extraReducers: builder => {
     builder
@@ -33,7 +35,6 @@ const slice = createSlice({
         state.items.push(action.payload);
         toast.success('Article is added successfully!');
       })
-
       .addCase(fetchArticleById.pending, state => {
         state.loading = true;
         state.current = null;
@@ -62,14 +63,17 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(fetchSavedArticles.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        state.items = action.payload.articles;
-        state.totalPages = action.payload.totalPages;
-      })
+      // .addCase(fetchSavedArticles.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.error = null;
+      //   state.items = action.payload.articles;
+      //   state.totalPages = action.payload.totalPages;
+      // })
       .addCase(logOut.fulfilled, state => {
         state.items = [];
+      })
+      .addCase(getUsersSavedArticles.fulfilled, (state, action) => {
+        state.usersSavedArticles = action.payload.data;
       })
       .addCase(getAuthorsArticles.fulfilled, (state, action) => {
         state.authorsArticles = action.payload.articles;
