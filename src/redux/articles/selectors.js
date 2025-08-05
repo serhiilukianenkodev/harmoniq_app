@@ -14,6 +14,8 @@ export const selectBookmarkedIds = state => state.articles.bookmarkedIds;
 export const selectAuthorsArticles = state => state.articles.authorsArticles;
 export const selectUsersSavedArticles = state =>
   state.articles.usersSavedArticles;
+export const selectisArticleEditable = state =>
+  state.articles.isArticleEditable;
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],
 //   (contacts, filter) =>

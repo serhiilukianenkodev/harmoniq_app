@@ -22,6 +22,7 @@ import Loader from '../../components/Loader/Loader';
 import Tabs from '../../components/Tabs/Tabs';
 
 import css from './UserProfile.module.css';
+import { changeIsArticleEditable } from '../../redux/articles/slice.js';
 
 const tabs = [
   { id: 'my', label: 'My Articles' },
@@ -40,6 +41,14 @@ const UserProfile = () => {
 
   const [activeTab, setActiveTab] = useState('my');
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    if (activeTab === 'my') {
+      dispatch(changeIsArticleEditable(true));
+
+      return () => dispatch(changeIsArticleEditable(false));
+    }
+  });
 
   useEffect(() => {
     dispatch(getUsersSavedArticles({}));

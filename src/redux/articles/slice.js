@@ -28,6 +28,12 @@ const slice = createSlice({
     bookmarkedIds: [],
     authorsArticles: [],
     usersSavedArticles: [],
+    isArticleEditable: false,
+  },
+  reducers: {
+    changeIsArticleEditable(state, action) {
+      state.isArticleEditable = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -82,3 +88,4 @@ const slice = createSlice({
 });
 
 export const articlesReducer = slice.reducer;
+export const { changeIsArticleEditable } = slice.actions;

@@ -35,7 +35,6 @@ const ArticlePage = () => {
   const article = useSelector(selectCurrentArticle);
   const recommendations = useSelector(selectRecommendedArticles);
   const loading = useSelector(selectArticlesLoading);
-
   useEffect(() => {
     if (articleId) {
       dispatch(fetchArticleById(articleId));
