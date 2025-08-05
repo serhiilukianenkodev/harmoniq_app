@@ -114,6 +114,18 @@ export const deleteFromSavedArticles = createAsyncThunk(
   }
 );
 
+export const getAuthorsArticles = createAsyncThunk(
+  'articles/authorsArticles',
+  async ({ authorId, page }, thunkAPI) => {
+    try {
+      const data = await axios.get(`/authors/${authorId}/articles`);
+      return data.data.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const clearArticles = createAsyncThunk('articles/clear', async () => {
   return [];
 });
