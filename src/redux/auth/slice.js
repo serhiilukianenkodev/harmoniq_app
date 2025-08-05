@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
 import { uploadUserPhoto } from '../authors/operations.js';
-import { addToSavedArticles } from '../articles/operations.js';
+import {
+  addToSavedArticles,
+  deleteFromSavedArticles,
+} from '../articles/operations.js';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -52,6 +55,15 @@ const authSlice = createSlice({
       })
       .addCase(addToSavedArticles.fulfilled, (state, action) => {
         state.user.savedArticles = action.payload.data;
+        state.isFetching = false;
+      })
+      .addCase(deleteFromSavedArticles.pending, (state, action) => {
+        state.isFetching = true;
+      })
+      .addCase(deleteFromSavedArticles.fulfilled, (state, action) => {
+        state.user.savedArticles = state.user.savedArticles.filter(
+          article => article !== action.payload
+        );
         state.isFetching = false;
       })
       .addCase(addToSavedArticles.rejected, (state, action) => {

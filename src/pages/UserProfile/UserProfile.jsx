@@ -53,7 +53,7 @@ const UserProfile = () => {
   useEffect(() => {
     dispatch(getUsersSavedArticles({}));
     dispatch(getAuthorsArticles({ authorId: user._id }));
-  }, []);
+  }, [user]);
 
   // useEffect(() => {
   //   dispatch(clearArticles());

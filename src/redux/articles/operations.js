@@ -56,7 +56,7 @@ export const addArticle = createAsyncThunk(
 
 // GET @ /articles/:id
 export const getArticleById = createAsyncThunk(
-  "articles/getArticleById",
+  'articles/getArticleById',
   async (articleId, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
@@ -68,7 +68,7 @@ export const getArticleById = createAsyncThunk(
         },
       });
 
-      return response.data.data; 
+      return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -77,7 +77,7 @@ export const getArticleById = createAsyncThunk(
 
 // PATCH @ /articles/:id
 export const updateArticle = createAsyncThunk(
-  "articles/updateArticle",
+  'articles/updateArticle',
   async ({ id, formData }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
@@ -85,12 +85,12 @@ export const updateArticle = createAsyncThunk(
 
       const response = await axios.patch(`/articles/${id}`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
       });
 
-      return response.data; 
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -144,7 +144,7 @@ export const addToSavedArticles = createAsyncThunk(
 );
 
 export const deleteFromSavedArticles = createAsyncThunk(
-  'articles/addToSaved',
+  'articles/deleteFromSaved',
   async (articleId, thunkAPI) => {
     try {
       await axios.delete(`/authors/saved-articles/${articleId}`);
