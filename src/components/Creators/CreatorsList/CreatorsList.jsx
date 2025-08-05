@@ -1,12 +1,13 @@
 import React from 'react';
 import css from './CreatorsList.module.css';
+import { Link } from 'react-router-dom';
 
 const CreatorsList = ({ creators }) => {
   return (
     <ul className={css.creatorsList}>
       {creators.map(user => (
         <li className={css.creatorsItem} key={user._id}>
-          <div className={css.creatorsImgWrapper}>
+          <Link to={`/authors/${user._id}`} className={css.creatorsImgWrapper}>
             <img
               className={css.creatorsImg}
               src={user.avatarUrl}
@@ -14,7 +15,7 @@ const CreatorsList = ({ creators }) => {
               height="148"
               alt={user.name}
             />
-          </div>
+          </Link>
           <p className={css.creatorsName}>{user.name}</p>
         </li>
       ))}
