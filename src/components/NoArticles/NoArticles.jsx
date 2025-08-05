@@ -8,13 +8,11 @@ const NoArticles = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
-        <img src={AlertIcon} alt="alert" />
+        <img src={AlertIcon} alt="alert" className={styles.icon}/>
         <h2 className={styles.title}>Nothing found.</h2>
         <p className={styles.description}>
           Be the first, who create an article
         </p>
-      </div>
       <button
         className={styles.createButton}
         onClick={() => navigate("/create")}

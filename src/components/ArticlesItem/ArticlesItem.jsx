@@ -7,19 +7,24 @@ const ArticlesItem = ({ article }) => {
     article.title.length > 30
       ? `${article.title.slice(0, 30)}...`
       : article.title;
-
+  
+  function stripHtml(html) {
+  const tmp = document.createElement("DIV");
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || "";
+  }
+  
+  const plainText = stripHtml(article.desc);
   const formattedDescription =
-    article.desc.length > 60 ? `${article.desc.slice(0, 60)}...` : article.desc;
+  plainText.length > 60 ? `${plainText.slice(0, 60)}...` : plainText;
 
   return (
     <li className={styles.card}>
       <div>
         <img src={article.img} alt={article.title} className={styles.image} />
-        <div>
           <p className={styles.author}>{article.ownerName}</p>
-          <h3 className={styles.title}>{formattedTitle}</h3>
+          <h2 className={styles.title}>{formattedTitle}</h2>
           <p className={styles.description}>{formattedDescription}</p>
-        </div>
       </div>
       <div className={styles.footer}>
         <Link to={`/articles/${article._id}`} className={styles.link}>

@@ -1,32 +1,29 @@
 .profileWrapper {
   padding: 46px 0;
 }
-.profileHeader {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+.title{
+  font-size: 40px;
   margin-bottom: 24px;
 }
+.profileHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: center;
+}
 .avatar {
-  width: 96px;
-  height: 96px;
+  width: 137px;
+  height: 137px;
   border-radius: 50%;
   object-fit: cover;
 }
 .name {
-  font-size: 28px;
-  font-weight: 600;
-  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
 }
 .articlesCount {
-  font-size: 16px;
-  color: #888;
-}
-.tabs {
-}
-.tabButton {
-}
-.active {
-}
-.loadMore {
+  font-size: 18px;
+  color: #000000;
+  font-weight: 700;
 }

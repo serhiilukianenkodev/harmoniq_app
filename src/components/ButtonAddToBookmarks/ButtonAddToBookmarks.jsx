@@ -12,8 +12,13 @@ import {
   selectSavedArticles,
 } from '../../redux/auth/selectors.js';
 import { selectisArticleEditable } from '../../redux/articles/selectors.js';
-import { EditIcon } from './EditIcon.jsx';
 import { useNavigate } from 'react-router-dom';
+
+const EditIcon = () => (
+  <svg width={15} height={15} aria-hidden="true" className={`${styles.icon}`}>
+    <use href="/icons/sprite.svg#pencil" />
+  </svg>
+); 
 
 const ButtonAddToBookmarks = ({ articleId }) => {
   const navigate = useNavigate();
@@ -54,8 +59,7 @@ const ButtonAddToBookmarks = ({ articleId }) => {
       {isEditable ? (
         <button
           onClick={handleEditClick}
-          className={`${styles.button} ${styles.default}`}
-          // disabled={isLoading}
+          className={`${styles.button}`}
         >
           <EditIcon />
         </button>
