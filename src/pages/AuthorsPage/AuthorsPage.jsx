@@ -48,14 +48,16 @@ const AuthorsPage = () => {
       <h1 className={styles.title}>Authors</h1>
       {error && <p className={styles.error}>Error: {error}</p>}
       <AuthorsList authors={authors} isLoading={isLoading} ref={listRef} />
-      <button
-        type="button"
-        className={`${styles.loadMore} ${!hasMore ? styles.disabled : ''}`}
-        onClick={handleLoadMore}
-        disabled={!hasMore}
-      >
-        Load More
-      </button>
+      {hasMore && (
+        <button
+          type="button"
+          className={`${styles.loadMore} ${!hasMore ? styles.disabled : ''}`}
+          onClick={handleLoadMore}
+          disabled={!hasMore}
+        >
+          {isLoading ? 'Loading...' : 'Load More'}
+        </button>
+      )}
     </div>
   );
 };
