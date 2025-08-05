@@ -34,7 +34,6 @@ export const fetchRecommendedArticles = createAsyncThunk(
 // POST @ /articles
 export const addArticle = createAsyncThunk(
   'articles/addArticle',
-  'articles/addArticle',
   async (article, thunkAPI) => {
     try {
       // const state = thunkAPI.getState();
@@ -45,7 +44,7 @@ export const addArticle = createAsyncThunk(
       const response = await axios.post('/articles', article, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       });
       return response.data;

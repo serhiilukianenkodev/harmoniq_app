@@ -88,6 +88,7 @@ export default function RichTextEditor({
           background-color: #649179
         }
         .editor-container {
+          width: 100%;
           border: 1px solid #ddd;
           border-radius: 6px;
           padding: 12px;
@@ -105,6 +106,24 @@ export default function RichTextEditor({
           height: 0;
           pointer-events: none;
         }
+
+       @media only screen and (min-width: 393px) {
+          .editor-container {
+            width: 361px;
+          }
+        }
+
+        @media only screen and (min-width: 768px) {
+          .editor-container {
+            width: 678px;
+          }
+        }
+        @media only screen and (min-width: 1440px) {
+          .editor-container {
+            width: 783px;
+          }
+        }
+}
       `}</style>
     </div>
   )
@@ -115,14 +134,14 @@ function MenuBar({ editor }) {
 
   return (
     <>
-      <button onClick={() => editor.chain().focus().toggleBold().run()}>Bold</button>
-      <button onClick={() => editor.chain().focus().toggleItalic().run()}>Italic</button>
-      <button onClick={() => editor.chain().focus().toggleStrike().run()}>Strike</button>
-      <button onClick={() => editor.chain().focus().toggleBulletList().run()}>• List</button>
-      <button onClick={() => editor.chain().focus().toggleOrderedList().run()}>1. List</button>
-      <button onClick={() => editor.chain().focus().toggleBlockquote().run()}>Quote</button>
-      <button onClick={() => editor.chain().focus().undo().run()}>Undo</button>
-      <button onClick={() => editor.chain().focus().redo().run()}>Redo</button>
+      <button type='button' onClick={() => editor.chain().focus().toggleBold().run()}>Bold</button>
+      <button type='button' onClick={() => editor.chain().focus().toggleItalic().run()}>Italic</button>
+      <button type='button' onClick={() => editor.chain().focus().toggleStrike().run()}>Strike</button>
+      <button type='button' onClick={() => editor.chain().focus().toggleBulletList().run()}>• List</button>
+      <button type='button' onClick={() => editor.chain().focus().toggleOrderedList().run()}>1. List</button>
+      <button type='button' onClick={() => editor.chain().focus().toggleBlockquote().run()}>Quote</button>
+      <button type='button' onClick={() => editor.chain().focus().undo().run()}>Undo</button>
+      <button type='button' onClick={() => editor.chain().focus().redo().run()}>Redo</button>
     </>
   )
 }
