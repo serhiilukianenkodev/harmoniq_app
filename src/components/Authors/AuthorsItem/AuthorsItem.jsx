@@ -12,7 +12,7 @@ const AuthorsItem = ({ author }) => {
     navigate(`/authors/${author._id}`);
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       handleClick();
     }
@@ -28,10 +28,10 @@ const AuthorsItem = ({ author }) => {
       aria-label={`View ${author.name}'s profile`}
     >
       <img
-        src={author.avatarUrl || '/default-avatar.png'}
+        src={author.avatarUrl || '/favicon.svg'}
         alt={author.name || 'Author'}
         className={styles.image}
-        onError={(e) => (e.target.src = '/default-avatar.png')}
+        onError={e => (e.target.src = '/favicon.svg')}
       />
       <h3 className={styles.name}>{author.name || 'Unknown Author'}</h3>
     </li>

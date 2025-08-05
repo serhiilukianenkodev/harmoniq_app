@@ -12,7 +12,7 @@
 .rightBlock {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
 }
 
 .nav {
@@ -26,32 +26,22 @@
   font-size: 24px;
   cursor: pointer;
 }
+
 /*************** TABLET *****************/
-@media (min-width: 768px) and (max-width: 1199px) {
-  .nav {
-    display: none;
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .burger {
+    display: inline-flex;
   }
 
   .auth {
     display: none;
   }
-
-  .burger {
-    display: inline-flex;
-  }
-
-  .rightBlock {
-    gap: 16px;
-  }
 }
 
 /* *********** MOBILE ***********/
 
-@media (min-width: 393px) and (max-width: 767px) {
-  .nav {
-    display: none;
-  }
-
+@media (max-width: 767px) {
   .burger {
     display: inline-flex;
   }

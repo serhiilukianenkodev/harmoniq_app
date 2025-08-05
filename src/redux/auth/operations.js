@@ -1,18 +1,5 @@
-import axios from 'axios';
+import axios, { setAuthHeader, clearAuthHeader } from '../../api/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = 'https://harmoniq-backend-qo0h.onrender.com';
-axios.defaults.withCredentials = true;
-// 'https://harmoniq-backend-qo0h.onrender.com';
-// Utility to add JWT
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-// Utility to remove JWT
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
 
 /*
  * POST @ /auth/register
@@ -24,7 +11,7 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post('/auth/register', credentials);
       // After successful registration, add the token to the HTTP header
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.data.token);
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -42,7 +29,7 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post('/auth/login', credentials);
       // After successful login, add the token to the HTTP header
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.data.token);
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -88,7 +75,7 @@ export const refreshUser = createAsyncThunk(
         }
       );
       // After successful login, add the token to the HTTP header
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.data.token);
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

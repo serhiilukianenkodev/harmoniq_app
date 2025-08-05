@@ -10,9 +10,9 @@ const UploadPhoto = () => {
     <div className={css.containerUploadPhoto}>
       <div className={css.boxUploadPhoto}>
         <div 
-          class={css.boxIconCloseUploadPhoto}
+          className={css.boxIconCloseUploadPhoto}
         >
-          <div class={css.iconCloseUploadPhoto}></div>
+          <div className={css.iconCloseUploadPhoto}></div>
         </div>
          <UploadForm
           image={image}

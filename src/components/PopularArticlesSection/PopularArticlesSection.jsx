@@ -94,7 +94,7 @@ function PopularArticlesSection() {
             height={24}
             aria-hidden="true"
           >
-            <use href="/public/icons/sprite.svg#top-right" />
+            <use href="/icons/sprite.svg#top-right" />
           </svg>
         </Link>
       </div>

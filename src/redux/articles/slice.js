@@ -1,22 +1,32 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-// import { fetchContacts, addContact, deleteContact } from "./operations";
-import { logOut } from "../auth/operations";
+import {
+  fetchArticleById,
+  fetchRecommendedArticles,
+  // saveArticleToBookmarks,
+} from './operations';
+
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import toast from "react-hot-toast";
-import { addArticle, updateArticle } from "./operations";
+import { logOut } from '../auth/operations';
+import {
+  addArticle,
+  fetchArticlesByAuthor,
+  fetchSavedArticles,
+  updateArticle
+} from './operations';
 
 const slice = createSlice({
-  name: "articles",
+  name: 'articles',
   initialState: {
     items: [],
     currentArticle: null,
+    recommendations: [],
+    totalPages: 0,
     loading: false,
     error: null,
+    bookmarkedIds: [],
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      // .addCase(fetchContacts.fulfilled, (state, action) => {
-      //   state.items = action.payload;
-      // })
       .addCase(addArticle.fulfilled, (state, action) => {
         state.items.push(action.payload);
       })
@@ -30,6 +40,36 @@ const slice = createSlice({
           state.currentArticle = updated;         
         }
       })
+      .addCase(fetchArticleById.pending, state => {
+        state.loading = true;
+        state.current = null;
+      })
+      .addCase(fetchArticleById.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.currentArticle = payload;
+      })
+      .addCase(fetchArticleById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchRecommendedArticles.fulfilled, (state, action) => {
+        state.recommendations = action.payload;
+      })
+      // .addCase(saveArticleToBookmarks.fulfilled, (state, action) => {
+      //   state.bookmarkedIds.push(action.payload.articleId);
+      //   toast.success('Article saved to bookmarks!');
+      // })
+      // .addCase(saveArticleToBookmarks.rejected, (state, action) => {
+      //   toast.error('Failed to save bookmark: ' + action.payload);
+      // })
+
+      // .addCase(deleteContact.fulfilled, (state, action) => {
+      //   const index = state.items.findIndex(
+      //     (contact) => contact.id === action.payload.id
+      //   );
+      //   state.items.splice(index, 1);
+      //   toast.success("Contact is delete successfully!");
+      // })
       // .addCase(logOut.fulfilled, (state) => {
       //   state.items = [];
       // })
@@ -69,6 +109,28 @@ const slice = createSlice({
       //     state.error = null;
       //   }
       // );
+      .addCase(fetchArticlesByAuthor.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchArticlesByAuthor.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.items = action.payload.articles;
+        state.totalPages = action.payload.totalPages;
+      })
+      .addCase(fetchArticlesByAuthor.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchSavedArticles.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.items = action.payload.articles;
+        state.totalPages = action.payload.totalPages;
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.items = [];
+      });
   },
 });
 
