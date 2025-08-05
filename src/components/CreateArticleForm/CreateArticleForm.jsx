@@ -1,10 +1,12 @@
+import { addArticle, updateArticle } from "../../redux/articles/operations";
+import { getArticleById } from "../../redux/articles/operations";
+import RichTextEditor from "../RichTextEditor/RichTextEditor";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { addArticle } from "../../redux/articles/operations";
-import css from "./CreateArticleForm.module.css";
 import toast from "react-hot-toast";
+import css from "./CreateArticleForm.module.css";
 
 const Photo = () => (
   <svg width={96} height={80} aria-hidden="true">
@@ -12,65 +14,96 @@ const Photo = () => (
   </svg>
 );
 
-const CreateArticleForm = () => {
+const CreateArticleForm = ({articleId}) => {
   const dispatch = useDispatch();
-
-  const initialValues = {
+  const id = articleId; 
+  const isEdit = Boolean(id);
+  
+  const [initialValues, setInitialValues] = useState({
     title: "",
     desc: "",
     photo: null,
-  };
+  });
 
   const articleSchema = Yup.object().shape({
-    title: Yup.string().min(3, "Too Short!").max(48).trim().required(),
-    desc: Yup.string().min(100, "Too Short!").max(4000, "Too Long!").trim().required(),
-    photo: Yup.mixed()
-      .required("Photo is required")
-      .test(
-        "fileSize",
-        "File size must be less than 1MB",
-        (value) => value && value.size <= 1024 * 1024
-      )
+    title: Yup.string().min(3, "too short!").max(48).trim().required(),
+    desc: Yup.string().min(100, "too short!").max(4000, "too long!").trim().required(),
+    photo: isEdit
+      ? Yup.mixed().nullable()
+      : Yup.mixed()
+        .required("photo is required")
+        .test(
+          "fileSize",
+          "file size must be less than 1MB",
+          (value) => value && value.size <= 1024 * 1024
+        )
   });
+
+  useEffect(() => {
+    if (isEdit) {
+      dispatch(getArticleById(id))
+        .unwrap()
+        .then((data) => {
+          setInitialValues({
+            title: data.title,
+            desc: data.desc.replace(/\/n/g, "\n"),
+            photo: data.img, 
+          });
+        })
+        .catch(() => toast.error("Failed to load article"));
+    }
+  }, [isEdit, id, dispatch]);
 
   const handleSubmit = (values, options) => {
     const formData = new FormData();
     formData.append("title", values.title);
     formData.append("desc", values.desc);
-    if (values.photo) formData.append("photo", values.photo);
+    if (values.photo && typeof values.photo !== "string") {
+      formData.append("photo", values.photo);     
+    }
 
-    dispatch(addArticle(formData)) 
+    const action = isEdit
+      ? updateArticle({ id, formData })
+      : addArticle(formData);
+
+    dispatch(action)
       .unwrap()
-      .then(() => toast.success("Article created!"))
+      .then(() => toast.success(isEdit ? "Article updated!" : "Article created!"))
       .catch(() => toast.error("Something went wrong..."));
 
-    options.resetForm();
+    if (!isEdit) options.resetForm();
   };
 
   
   return (
-      <Formik
+    <Formik
+      enableReinitialize
       initialValues={initialValues}
       validationSchema={articleSchema}
       onSubmit={handleSubmit}
       >
         {() => (
         <Form className={css.container} autoComplete="off">
-          <div className={css.photoInput}>
             <div className={css.photoWrapper}>
             <Field name="photo">
             {({ form, meta }) => {
               const file = form.values.photo;
-              const previewUrl = file ? URL.createObjectURL(file) : null;
-
+              const previewUrl = typeof file === "string" 
+                ? file                
+                : file             
+                  ? URL.createObjectURL(file)
+                  : null; 
+    
               useEffect(() => {
                 return () => {
-                  if (previewUrl) URL.revokeObjectURL(previewUrl); 
+                  if (file && typeof file !== "string") {
+                    URL.revokeObjectURL(previewUrl);
+                  }
                 };
-              }, [previewUrl]);
+              }, [previewUrl, file]);
 
               return (
-                <div className={css.btn}>
+                <div>
                   <button
                     type="button"
                     className={css.photoBtn}
@@ -80,7 +113,7 @@ const CreateArticleForm = () => {
                       <img
                         src={previewUrl}
                         alt="Preview"
-                        style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "8px" }}
+                        className={css.previewUrl}
                       />
                     ) : (
                       <Photo />
@@ -97,15 +130,16 @@ const CreateArticleForm = () => {
                       }}
                     />
                   </button>
-                  {meta.touched && meta.error && <div className={css.error}>{meta.error}</div>}
+                  {meta.touched && meta.error && 
+                  <div className={css.error}>{meta.error}</div>}
                 </div>
               );
             }}
-                </Field>
-            </div>
-
-            <div className={css.inputWrapper}>
-            <label>
+            </Field>
+          </div>
+        
+        <div className={css.inputWrapper}>
+          <label>
               <span className={css.title}>Title</span>
               <Field name="title">
                 {({ field, meta }) => (
@@ -115,23 +149,31 @@ const CreateArticleForm = () => {
                     className={`${css.input} ${meta.touched && meta.error ? css.errorField : ""}`}
                     placeholder="Enter the title"
                     />
-                )}
-              </Field>
-              </label>
-              </div>
-            </div>
-
+                  )}
+                </Field>
+                <ErrorMessage name="title" className={css.error} component="div" />
+            </label>
+          </div>
+          
+        <div className={css.txtareaWrapper}>
+          <label htmlFor="descEditor">
             <Field name="desc">
-              {({ field, meta }) => (               
-                <textarea               
-                  {...field}                  
-                  type="text"                  
+              {({ field, form, meta }) => (
+                <RichTextEditor
+                  id="descEditor"
+                  value={field.value}
+                  onChange={(val) => form.setFieldValue(field.name, val)}
                   className={`${css.txtarea} ${meta.touched && meta.error ? css.errorField : ""}`}
-                  placeholder="Enter a text"
-                />                
-              )}              
-            </Field>            
-            <button className={css.createBtn} type="submit">Publish Article</button>           
+                />
+              )}
+            </Field>
+            <ErrorMessage name="desc" className={css.error} component="div" />
+            </label>
+        </div>
+
+          <button className={css.createBtn} type="submit">
+            {isEdit ? "Save changes" : "Publish Article"}
+          </button>           
           </Form>
         )}
       </Formik>
