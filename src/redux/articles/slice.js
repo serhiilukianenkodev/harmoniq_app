@@ -1,8 +1,17 @@
 import {
+import {
+  clearArticles,
+  fetchArticlesByAuthor,
+  fetchSavedArticles,
+  fetchArticleById,
+  addArticle,
+  fetchRecommendedArticles,
+  addToSavedArticles,
+  deleteFromSavedArticles
+} from './operations';
   fetchArticleById,
   fetchRecommendedArticles,
   // saveArticleToBookmarks,
-} from './operations';
 
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 // import { fetchContacts, addContact, deleteContact } from "./operations";
@@ -12,11 +21,11 @@ import {
   addArticle,
   fetchArticlesByAuthor,
   fetchSavedArticles,
-} from './operations';
 
 const slice = createSlice({
   name: 'articles',
   initialState: {
+    totalItems: 0,
     items: [],
     currentArticle: null,
     recommendations: [],
@@ -107,6 +116,15 @@ const slice = createSlice({
       .addCase(fetchArticlesByAuthor.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        if (action.meta && action.meta.arg && action.meta.arg.page > 1) {
+          state.items = [...state.items, ...action.payload.articles];
+        } else {
+          state.items = action.payload.articles;
+        }
+        state.totalPages = action.payload.totalPages;
+        state.totalItems = action.payload.totalItems || action.payload.total || 0;
+        state.loading = false;
+        state.error = null;
         state.items = action.payload.articles;
         state.totalPages = action.payload.totalPages;
       })
@@ -117,10 +135,24 @@ const slice = createSlice({
       .addCase(fetchSavedArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        if (action.meta && action.meta.arg && action.meta.arg.page > 1) {
+          state.items = [...state.items, ...action.payload.articles];
+        } else {
+          state.items = action.payload.articles;
+        }
+        state.totalPages = action.payload.totalPages;
+        state.totalItems = action.payload.totalItems || action.payload.total || 0;
+        state.loading = false;
+        state.error = null;
         state.items = action.payload.articles;
         state.totalPages = action.payload.totalPages;
       })
       .addCase(logOut.fulfilled, state => {
+      })
+      .addCase(clearArticles, (state) => {
+        state.items = [];
+        state.totalPages = 0;
+        state.totalItems = 0;
         state.items = [];
       });
   },
