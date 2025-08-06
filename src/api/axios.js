@@ -39,7 +39,6 @@ instance.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
-    console.log('🚀 ~ error.response:', error.response);
 
     // Якщо токен протух і це не запит до /auth/refresh
     if (
@@ -66,8 +65,6 @@ instance.interceptors.response.use(
 
       try {
         // Викликаємо refreshUser через store.dispatch
-        console.log('🚀 ~ store:', store);
-        console.log('🚀 ~ refreshUser:', refreshUser);
         const result = await store.dispatch(refreshUser());
 
         if (refreshUser.fulfilled.match(result)) {
