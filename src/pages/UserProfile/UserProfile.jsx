@@ -15,6 +15,7 @@ import {
   selectLoading,
   selectTotalPages,
   selectUsersSavedArticles,
+  selectUsersSavedArticlesCount,
 } from '../../redux/articles/selectors';
 
 import { ArticlesList } from '../../components/ArticlesList/ArticlesList';
@@ -38,9 +39,11 @@ const UserProfile = () => {
   const totalPages = useSelector(selectTotalPages);
   const authorsArticles = useSelector(selectAuthorsArticles);
   const usersSavedArticles = useSelector(selectUsersSavedArticles);
+  const usersSavedArticlesCount = useSelector(selectUsersSavedArticlesCount);
 
   const [activeTab, setActiveTab] = useState('my');
   const [page, setPage] = useState(1);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   useEffect(() => {
     if (activeTab === 'my') {
@@ -64,23 +67,33 @@ const UserProfile = () => {
     }
   }, [dispatch, user._id, activeTab]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = async () => {
     const nextPage = page + 1;
-    setPage(nextPage);
-    if (activeTab === 'my') {
-      dispatch(fetchArticlesByAuthor({ authorId: user._id, page: nextPage }));
-    } else if (activeTab === 'saved') {
-      dispatch(fetchSavedArticles({ page: nextPage }));
+    setIsLoadingMore(true);
+    try {
+      if (activeTab === 'my') {
+        await dispatch(
+          fetchArticlesByAuthor({ authorId: user._id, page: nextPage })
+        );
+      } else if (activeTab === 'saved') {
+        await dispatch(fetchSavedArticles({ page: nextPage }));
+      }
+      setPage(nextPage);
+    } finally {
+      setIsLoadingMore(false);
     }
   };
 
   const articlesCount =
-    activeTab === 'my' ? authorsArticles.length : usersSavedArticles.length;
+    // activeTab === 'my' ? authorsArticles.length : usersSavedArticles.length;
+    activeTab === 'my' ? authorsArticles.length : usersSavedArticlesCount;
+
+  const hasMore = page < totalPages;
 
   return (
     <div className={css.profileWrapper}>
       <h1 className={css.title}>My Profile</h1>
-      <div className={css.profileHeader}>       
+      <div className={css.profileHeader}>
         <img src={user.avatarUrl} alt={user.name} className={css.avatar} />
         <div>
           <p className={css.name}>{user.name}</p>
@@ -94,10 +107,16 @@ const UserProfile = () => {
       <ArticlesList
         articles={activeTab === 'my' ? authorsArticles : usersSavedArticles}
       />
-      {page < totalPages && (
-        <button className={css.loadMore} onClick={handleLoadMore}>
-          Load More
-        </button>
+      {hasMore && (
+        <div className={css.loadMoreWrapper}>
+          <button
+            className={css.loadMore}
+            onClick={handleLoadMore}
+            disabled={isLoading || isLoadingMore}
+          >
+            {isLoadingMore ? 'Loading...' : 'Load More'}
+          </button>
+        </div>
       )}
     </div>
   );

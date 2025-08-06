@@ -29,6 +29,7 @@ const slice = createSlice({
     bookmarkedIds: [],
     authorsArticles: [],
     usersSavedArticles: [],
+    usersSavedArticlesCount: 0,
     isArticleEditable: false,
   },
   reducers: {
@@ -101,12 +102,13 @@ const slice = createSlice({
       .addCase(fetchSavedArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const { articles, totalPages } = action.payload;
+        const { articles, totalPages, totalItems } = action.payload;
         if (action.meta.arg.page === 1) {
           state.usersSavedArticles = articles;
         } else {
           state.usersSavedArticles.push(...articles);
         }
+        state.usersSavedArticlesCount = totalItems;
         state.totalPages = totalPages;
       })
       // .addCase(fetchSavedArticles.fulfilled, (state, action) => {
