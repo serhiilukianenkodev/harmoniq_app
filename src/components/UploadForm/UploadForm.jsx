@@ -7,6 +7,12 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const Photo = () => (
+  <svg width={18} height={17} aria-hidden="true" className={css.icon}>
+    <use href="/icons/sprite.svg#photo" />
+  </svg>
+);
+
 const UploadForm = ({ image, setImage, file, setFile }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -85,9 +91,7 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
                     style={image ? { backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
                 > 
                 {!image && (
-                    <svg className={css.iconCircleButtonUploadForm}>
-                    <use xlinkHref='/icons/sprite.svg#photo'></use>
-                    </svg>
+                    <Photo/>
                 )}
                 </div>
             </label>
