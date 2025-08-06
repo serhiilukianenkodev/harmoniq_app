@@ -93,6 +93,13 @@
     opacity: 30%;
 }
 
+.errorMessage {
+  color: #AD6A6C;
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: center;
+}
+
 @media (max-width: 768px) and (min-width: 394px) {
   .containerUploadForm{
     padding: 32px 16px;

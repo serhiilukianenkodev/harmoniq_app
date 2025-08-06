@@ -25,7 +25,17 @@ const UploadForm = ({ image, setImage, file, setFile }) => {
 
     const handleImageChange = (e) => {
         const selectedFile = e.target.files[0];
-        if (!selectedFile) return;
+      if (!selectedFile) return;
+      
+      if (selectedFile.size > 1024 * 1024) { 
+          const msg = 'Файл має бути меншим за 1 МБ';
+          setError(msg);
+          toast.error(msg);
+          setFile(null);
+          return;
+      }
+      
+      setError(null);
 
         const reader = new FileReader();
         reader.onloadend = () => {
