@@ -4,6 +4,8 @@ import Container from '../Container/Container.jsx';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ModalErrorSave from '../ModalErrorSave/ModalErrorSave.jsx';
+import Logo from '../Logo/Logo.jsx';
+
 
 const Footer = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -20,9 +22,7 @@ const Footer = () => {
     <footer className={css.footer}>
       <Container>
         <div className={css.inner}>
-          <Link to="/">
-            <img src="/logo.png" alt="harmoniq logo" className={css.icon} />
-          </Link>
+            <Logo />
           <p className={css.copy}>
             &copy; {new Date().getFullYear()} Harmoniq. All rights reserved.
           </p>

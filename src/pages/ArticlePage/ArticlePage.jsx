@@ -64,16 +64,10 @@ const ArticlePage = () => {
       <h2 className={css.title}>{title}</h2>
       {img && <img src={img} alt={title} className={css.img} />}
       <div className={css.articles}>
-        <div className={css.text}>
-          {desc
-            .replace(/\/n/g, '<br><br>')
-            .split('<br>')
-            .map((paragraph, id) => (
-              <p key={id} className={css.paragraph}>
-                {paragraph}
-              </p>
-            ))}
-        </div>
+        <div
+          className={css.text}    
+          dangerouslySetInnerHTML={{ __html: desc }}         
+        />
         <div className={css.articlesBlock}>
           <div className={css.wrapper}>
             <p>

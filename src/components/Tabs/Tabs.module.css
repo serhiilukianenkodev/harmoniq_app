@@ -1,26 +1,35 @@
 .tabs {
   display: flex;
-  gap: 16px;
+  gap: 38px;
   margin-bottom: 24px;
 }
 
 .tab {
-  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 700;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid transparent;
   font-size: 16px;
-  cursor: pointer;
-  color: #888;
-  transition: all 0.2s ease-in-out;
+  color: #000000;
+  position: relative; 
+  padding-bottom: 6px; 
+  display: inline-block;
 }
 
-.tab:hover {
-  color: #222;
+.tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0); 
+  transform-origin: center;
+  width: 90%; 
+  height: 1.5px;
+  background-color: black;
+  border-radius: 1px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.active {
-  border-color: #222;
-  color: #222;
-  font-weight: 600;
+.tab.active::after {
+  transform: translateX(-50%) scaleX(1); 
 }

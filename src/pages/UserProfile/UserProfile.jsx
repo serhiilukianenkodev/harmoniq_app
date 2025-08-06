@@ -80,14 +80,15 @@ const UserProfile = () => {
 
   return (
     <div className={css.profileWrapper}>
-      <div className={css.profileHeader}>
+      <h1 className={css.title}>My Profile</h1>
+      <div className={css.profileHeader}>       
         <img src={user.avatarUrl} alt={user.name} className={css.avatar} />
         <div>
-          <div className={css.name}>{user.name}</div>
-          <div className={css.articlesCount}>Articles: {articlesCount}</div>
+          <p className={css.name}>{user.name}</p>
+          <p className={css.articlesCount}>{articlesCount} articles</p>
         </div>
       </div>
-      <div className={css.tabs}>
+      <div>
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
       {isLoading && <Loader />}

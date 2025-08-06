@@ -7,7 +7,6 @@
     align-items: center;
     padding: 8px;
     gap: 8px;
-    cursor: pointer;
     height: 40px;
     border: 1px solid var(--color-darker-green);
     border-radius: 64px;
@@ -15,25 +14,20 @@
     order: 0;
     align-self: stretch;
     aspect-ratio: 1 / 1;
-
 }
-.button svg{
-     width: 24px;
-     height: 24px;
-     stroke: var(--color-green);
- }
 
 .button:hover {
-    color: black;
+   background-color: #374F42;
+   .icon{
+   stroke: var(--color-white);
+}
 }
 
-.default {
-    color: #1f2937;
+.icon{
+   stroke: #374F42;
 }
 
-.default:hover {
-    color: var(--color-white);
-}
+
 
 .bookmarked {
     border: transparent;
@@ -41,6 +35,5 @@
     color: var(--color-white);
 }
 .bookmarked svg{
-    /* fill:red; */
     stroke:var(--color-white);
 }
