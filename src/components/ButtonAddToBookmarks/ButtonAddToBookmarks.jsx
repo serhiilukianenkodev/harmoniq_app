@@ -27,9 +27,10 @@ const ButtonAddToBookmarks = ({ articleId }) => {
   const isBookmarked = useSelector(selectSavedArticles).find(
     id => id === articleId
   );
+
   const isAuthenticated = useSelector(selectIsLoggedIn);
 
-  const isLoading = useSelector(state => state.auth.isFetching);
+  // const isLoading = useSelector(state => state.auth.isFetching);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -37,22 +38,27 @@ const ButtonAddToBookmarks = ({ articleId }) => {
     navigate(`/create/${articleId}`);
   };
 
+  const [localLoading, setLocalLoading] = useState(false);
+
   const handleBookmark = async () => {
     if (!isAuthenticated) {
       setIsModalOpen(true);
       return;
     }
 
-    try {
-      if (isBookmarked) {
-        dispatch(deleteFromSavedArticles(articleId));
-      } else {
-        dispatch(addToSavedArticles(articleId));
-      }
-    } catch (error) {
-      console.error('Error saving bookmark:', error);
+  setLocalLoading(true);
+  try {
+    if (isBookmarked) {
+      await dispatch(deleteFromSavedArticles(articleId)).unwrap();
+    } else {
+      await dispatch(addToSavedArticles(articleId)).unwrap();
     }
-  };
+  } catch (error) {
+    console.error('Error saving bookmark:', error);
+  } finally {
+    setLocalLoading(false);
+  }
+};
 
   return (
     <>
@@ -69,9 +75,9 @@ const ButtonAddToBookmarks = ({ articleId }) => {
           className={`${styles.button} ${
             isBookmarked ? styles.bookmarked : styles.default
           }`}
-          disabled={isLoading}
+          disabled={localLoading}
         >
-          {isLoading ? '...' : <BookmarkIcon />}
+          {localLoading ? '...' : <BookmarkIcon />}
         </button>
       )}
 
