@@ -21,7 +21,7 @@
     align-items: center;
   }
   .backdrop {
-    top: 62px;
+    top: 63px;
   }
   .userWrapper {
     margin-top: 32px;
@@ -110,7 +110,7 @@
   }
   .overlay {
     position: absolute;
-    top: 74px;
+    top: 73px;
     left: 0;
     width: 100%;
     background-color: #d3e1d9;
