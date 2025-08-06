@@ -21,6 +21,12 @@ import {
 } from '../../redux/auth/selectors.js';
 import ModalErrorSave from '../../components/ModalErrorSave/ModalErrorSave.jsx';
 
+const Flag = () => (
+  <svg width={13} height={18} aria-hidden="true" className={css.iconFlag}>
+    <use href="/icons/sprite.svg#Vector-flag" />
+  </svg>
+);
+
 const ArticlePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { id: articleId } = useParams();
@@ -66,7 +72,7 @@ const ArticlePage = () => {
       <div className={css.articles}>
         <div
           className={css.text}    
-          dangerouslySetInnerHTML={{ __html: desc }}         
+          dangerouslySetInnerHTML={{ __html: desc.replace(/\/n/g, '<br>') }}         
         />
         <div className={css.articlesBlock}>
           <div className={css.wrapper}>
@@ -111,14 +117,7 @@ const ArticlePage = () => {
             <button className={css.saveBtn} onClick={handleSave}>
               {isBookmarked ? 'Unsave' : 'Save'}
               {isSaving && <span className={css.loading}>...</span>}
-              <svg
-                className={css.btnIcon}
-                width={24}
-                height={24}
-                aria-hidden="true"
-              >
-                <use href="/icons/sprite.svg#Vector-flag" />
-              </svg>
+             <Flag/>
             </button>
           </div>
         </div>
