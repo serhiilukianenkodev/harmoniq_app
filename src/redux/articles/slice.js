@@ -4,6 +4,7 @@ import {
   getAuthorsArticles,
   getUsersSavedArticles,
   // saveArticleToBookmarks,
+  clearArticles,
 } from './operations';
 
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
@@ -70,15 +71,43 @@ const slice = createSlice({
       .addCase(fetchArticlesByAuthor.pending, state => {
         state.loading = true;
       })
+      // .addCase(fetchArticlesByAuthor.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.error = null;
+      //   state.items = action.payload.articles;
+      //   state.totalPages = action.payload.totalPages;
+      // })
       .addCase(fetchArticlesByAuthor.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload.articles;
-        state.totalPages = action.payload.totalPages;
+        const { articles, totalPages } = action.payload;
+        if (action.meta.arg.page === 1) {
+          state.authorsArticles = articles;
+        } else {
+          state.authorsArticles.push(...articles);
+        }
+        state.totalPages = totalPages;
       })
       .addCase(fetchArticlesByAuthor.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      // .addCase(fetchSavedArticles.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.items.push(...action.payload.articles);
+      //   state.page = action.payload.page;
+      //   state.totalPages = action.payload.totalPages;
+      // })
+      .addCase(fetchSavedArticles.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const { articles, totalPages } = action.payload;
+        if (action.meta.arg.page === 1) {
+          state.usersSavedArticles = articles;
+        } else {
+          state.usersSavedArticles.push(...articles);
+        }
+        state.totalPages = totalPages;
       })
       // .addCase(fetchSavedArticles.fulfilled, (state, action) => {
       //   state.loading = false;
@@ -89,11 +118,27 @@ const slice = createSlice({
       .addCase(logOut.fulfilled, state => {
         state.items = [];
       })
+      // .addCase(getUsersSavedArticles.fulfilled, (state, action) => {
+      //   state.usersSavedArticles = action.payload.articles;
+      // })
+      // .addCase(getAuthorsArticles.fulfilled, (state, action) => {
+      //   state.authorsArticles = action.payload.articles;
+      // });
       .addCase(getUsersSavedArticles.fulfilled, (state, action) => {
         state.usersSavedArticles = action.payload.articles;
       })
       .addCase(getAuthorsArticles.fulfilled, (state, action) => {
         state.authorsArticles = action.payload.articles;
+      })
+      // .addCase(clearArticles.fulfilled, state => {
+      //   state.authorsArticles = [];
+      //   state.usersSavedArticles = [];
+      //   state.totalPages = 0;
+      // });
+      .addCase(clearArticles.fulfilled, state => {
+        state.authorsArticles = [];
+        state.usersSavedArticles = [];
+        state.totalPages = 0;
       });
   },
 });

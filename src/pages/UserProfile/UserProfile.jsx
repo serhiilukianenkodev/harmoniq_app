@@ -45,35 +45,34 @@ const UserProfile = () => {
   useEffect(() => {
     if (activeTab === 'my') {
       dispatch(changeIsArticleEditable(true));
-
       return () => dispatch(changeIsArticleEditable(false));
     }
-  });
-
-  useEffect(() => {
-    dispatch(getUsersSavedArticles({}));
-    dispatch(getAuthorsArticles({ authorId: user._id }));
-  }, [user]);
+  }, [activeTab, dispatch]);
 
   // useEffect(() => {
-  //   dispatch(clearArticles());
-  //   setPage(1);
-  //   if (activeTab === 'my') {
-  //     dispatch(fetchArticlesByAuthor({ authorId: user._id, page: 1 }));
-  //   } else if (activeTab === 'saved') {
-  //     // dispatch(fetchSavedArticles({ page: 1 }));
-  //   }
-  // }, [dispatch, user._id, activeTab]);
+  //   dispatch(getUsersSavedArticles({}));
+  //   dispatch(getAuthorsArticles({ authorId: user._id }));
+  // }, []);
 
-  // const handleLoadMore = () => {
-  //   const nextPage = page + 1;
-  //   setPage(nextPage);
-  //   if (activeTab === 'my') {
-  //     dispatch(fetchArticlesByAuthor({ authorId: user._id, page: nextPage }));
-  //   } else if (activeTab === 'saved') {
-  //     dispatch(fetchSavedArticles({ page: nextPage }));
-  //   }
-  // };
+  useEffect(() => {
+    dispatch(clearArticles());
+    setPage(1);
+    if (activeTab === 'my') {
+      dispatch(fetchArticlesByAuthor({ authorId: user._id, page: 1 }));
+    } else {
+      dispatch(fetchSavedArticles({ page: 1 }));
+    }
+  }, [dispatch, user._id, activeTab]);
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    if (activeTab === 'my') {
+      dispatch(fetchArticlesByAuthor({ authorId: user._id, page: nextPage }));
+    } else if (activeTab === 'saved') {
+      dispatch(fetchSavedArticles({ page: nextPage }));
+    }
+  };
 
   const articlesCount =
     activeTab === 'my' ? authorsArticles.length : usersSavedArticles.length;
@@ -95,11 +94,11 @@ const UserProfile = () => {
       <ArticlesList
         articles={activeTab === 'my' ? authorsArticles : usersSavedArticles}
       />
-      {/* {page < totalPages && (
+      {page < totalPages && (
         <button className={css.loadMore} onClick={handleLoadMore}>
           Load More
         </button>
-      )} */}
+      )}
     </div>
   );
 };
