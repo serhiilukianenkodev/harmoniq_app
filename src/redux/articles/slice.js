@@ -3,6 +3,7 @@ import {
   fetchRecommendedArticles,
   getAuthorsArticles,
   getUsersSavedArticles,
+  deleteFromSavedArticles,
   // saveArticleToBookmarks,
   clearArticles,
 } from './operations';
@@ -29,6 +30,7 @@ const slice = createSlice({
     bookmarkedIds: [],
     authorsArticles: [],
     usersSavedArticles: [],
+    usersSavedArticlesCount: 0,
     isArticleEditable: false,
   },
   reducers: {
@@ -101,12 +103,13 @@ const slice = createSlice({
       .addCase(fetchSavedArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const { articles, totalPages } = action.payload;
+        const { articles, totalPages, totalItems } = action.payload;
         if (action.meta.arg.page === 1) {
           state.usersSavedArticles = articles;
         } else {
           state.usersSavedArticles.push(...articles);
         }
+        state.usersSavedArticlesCount = totalItems;
         state.totalPages = totalPages;
       })
       // .addCase(fetchSavedArticles.fulfilled, (state, action) => {
@@ -124,6 +127,18 @@ const slice = createSlice({
       // .addCase(getAuthorsArticles.fulfilled, (state, action) => {
       //   state.authorsArticles = action.payload.articles;
       // });
+      .addCase(
+        deleteFromSavedArticles.fulfilled,
+        (state, { payload: deletedId }) => {
+          state.usersSavedArticles = state.usersSavedArticles.filter(
+            article => article._id !== deletedId
+          );
+          state.usersSavedArticlesCount = Math.max(
+            0,
+            state.usersSavedArticlesCount - 1
+          );
+        }
+      )
       .addCase(getUsersSavedArticles.fulfilled, (state, action) => {
         state.usersSavedArticles = action.payload.articles;
       })
