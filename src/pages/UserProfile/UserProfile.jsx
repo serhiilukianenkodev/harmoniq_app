@@ -103,9 +103,27 @@ const UserProfile = () => {
       <div>
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
+      {/* {isLoading && <Loader />}
+      <ArticlesList
+        articles={activeTab === 'my' ? authorsArticles : usersSavedArticles}
+      /> */}
       {isLoading && <Loader />}
       <ArticlesList
         articles={activeTab === 'my' ? authorsArticles : usersSavedArticles}
+        isLoading={isLoading}
+        emptyProps={
+          activeTab === 'my'
+            ? {
+                description: 'Write your first article',
+                buttonText: 'Create an article',
+                buttonLink: '/create',
+              }
+            : {
+                description: 'Save your first article',
+                buttonText: 'Go to articles',
+                buttonLink: '/articles',
+              }
+        }
       />
       {hasMore && (
         <div className={css.loadMoreWrapper}>
