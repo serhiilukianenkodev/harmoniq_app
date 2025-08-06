@@ -1,8 +1,8 @@
-import { TextStyle } from '@tiptap/extension-text-style'
-import { useEditor, EditorContent } from '@tiptap/react'
-import Placeholder from '@tiptap/extension-placeholder'
-import StarterKit from '@tiptap/starter-kit'
-import React, { useEffect, useRef } from 'react'
+import { TextStyle } from '@tiptap/extension-text-style';
+import { useEditor, EditorContent } from '@tiptap/react';
+import Placeholder from '@tiptap/extension-placeholder';
+import StarterKit from '@tiptap/starter-kit';
+import React, { useEffect, useRef } from 'react';
 
 export default function RichTextEditor({
   id,
@@ -12,39 +12,38 @@ export default function RichTextEditor({
   placeholder,
   maxLength,
 }) {
-  const editorRef = useRef(null)
+  const editorRef = useRef(null);
 
   const editor = useEditor({
     extensions: [
       TextStyle,
       StarterKit,
       Placeholder.configure({
-        placeholder: placeholder || 'Enter a text', 
+        placeholder: placeholder || 'Enter a text',
       }),
     ],
     content: value || '',
     onUpdate: ({ editor }) => {
-      const text = editor.getText()
+      const text = editor.getText();
       if (!maxLength || text.length <= maxLength) {
-        onChange(editor.getHTML())
+        onChange(editor.getHTML());
       }
     },
-  })
+  });
 
   useEffect(() => {
     if (editor && value !== editor.getHTML()) {
-      editor.commands.setContent(value || '')
+      editor.commands.setContent(value || '');
     }
-  }, [value, editor])
-
+  }, [value, editor]);
 
   // Автовисота
   useEffect(() => {
     if (editorRef.current) {
-      editorRef.current.style.height = 'auto'
-      editorRef.current.style.height = editorRef.current.scrollHeight + 'px'
+      editorRef.current.style.height = 'auto';
+      editorRef.current.style.height = editorRef.current.scrollHeight + 'px';
     }
-  }, [value])
+  }, [value]);
 
   return (
     <div id={id} className={`${className} rtext-wrapper`}>
@@ -126,22 +125,56 @@ export default function RichTextEditor({
 }
       `}</style>
     </div>
-  )
+  );
 }
 
 function MenuBar({ editor }) {
-  if (!editor) return null
+  if (!editor) return null;
 
   return (
     <>
-      <button type='button' onClick={() => editor.chain().focus().toggleBold().run()}>Bold</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleItalic().run()}>Italic</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleStrike().run()}>Strike</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleBulletList().run()}>• List</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleOrderedList().run()}>1. List</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleBlockquote().run()}>Quote</button>
-      <button type='button' onClick={() => editor.chain().focus().undo().run()}>Undo</button>
-      <button type='button' onClick={() => editor.chain().focus().redo().run()}>Redo</button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleBold().run()}
+      >
+        Bold
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleItalic().run()}
+      >
+        Italic
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleStrike().run()}
+      >
+        Strike
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleBulletList().run()}
+      >
+        • List
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleOrderedList().run()}
+      >
+        1. List
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleBlockquote().run()}
+      >
+        Quote
+      </button>
+      <button type="button" onClick={() => editor.chain().focus().undo().run()}>
+        Undo
+      </button>
+      <button type="button" onClick={() => editor.chain().focus().redo().run()}>
+        Redo
+      </button>
     </>
-  )
+  );
 }

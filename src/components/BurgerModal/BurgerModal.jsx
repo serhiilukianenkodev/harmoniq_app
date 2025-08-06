@@ -77,7 +77,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
 
         {isLoggedIn && (
           <div className={styles.userWrapper}>
-            <UserMenu variant="modal" />
+            <UserMenu variant="modal" onClose={onClose} />
           </div>
         )}
       </div>

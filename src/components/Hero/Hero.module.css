@@ -94,6 +94,7 @@
 }
 
 .outlineBtn {
+  color: #374f42;
   background-color: transparent;
   border: 1px solid var(--Green-Darker, #374f42);
 }
