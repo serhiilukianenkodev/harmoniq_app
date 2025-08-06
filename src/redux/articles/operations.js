@@ -99,33 +99,60 @@ export const updateArticle = createAsyncThunk(
 
 export const fetchArticlesByAuthor = createAsyncThunk(
   'articles/fetchByAuthor',
+  // async ({ authorId, page = 1 }, thunkAPI) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `/authors/${authorId}/articles?page=${page}`
+  //     );
+  //     return response.data;
+  //   } catch (error) {
+  //     return thunkAPI.rejectWithValue(error.response.data);
+  //   }
+  // }
   async ({ authorId, page = 1 }, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `/authors/${authorId}/articles?page=${page}`
-      );
-      return response.data;
+      const response = await axios.get(`/authors/${authorId}/articles`, {
+        params: { page },
+      });
+      return response.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
 
 export const fetchSavedArticles = createAsyncThunk(
   'articles/fetchSaved',
+  // async ({ page = 1 }, thunkAPI) => {
+  //   try {
+  //     const state = thunkAPI.getState();
+  //     const token = state.auth.token;
+  //     const response = await axios.get(`/saved`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       params: { page },
+  //     });
+  //     return response.data;
+  //   } catch (e) {
+  //     return thunkAPI.rejectWithValue(e.message);
+  //   }
+  // }
   async ({ page = 1 }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      const response = await axios.get(`/saved`, {
+      const response = await axios.get(`/authors/saved-articles`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         params: { page },
       });
-      return response.data;
+      return response.data.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.response?.data?.message || e.message);
     }
   }
 );
