@@ -16,6 +16,7 @@
 
 .text {
   max-width: 808px;
+  margin-bottom: 24px;
 }
 
 .paragraph {
@@ -150,6 +151,10 @@
   .articles {
     display: flex;
     gap: 24px;
+  }
+
+  .text {
+    margin-bottom: 0;
   }
 
   .wrapper {
