@@ -3,6 +3,7 @@ import {
   fetchRecommendedArticles,
   getAuthorsArticles,
   getUsersSavedArticles,
+  deleteFromSavedArticles,
   // saveArticleToBookmarks,
   clearArticles,
 } from './operations';
@@ -126,6 +127,18 @@ const slice = createSlice({
       // .addCase(getAuthorsArticles.fulfilled, (state, action) => {
       //   state.authorsArticles = action.payload.articles;
       // });
+      .addCase(
+        deleteFromSavedArticles.fulfilled,
+        (state, { payload: deletedId }) => {
+          state.usersSavedArticles = state.usersSavedArticles.filter(
+            article => article._id !== deletedId
+          );
+          state.usersSavedArticlesCount = Math.max(
+            0,
+            state.usersSavedArticlesCount - 1
+          );
+        }
+      )
       .addCase(getUsersSavedArticles.fulfilled, (state, action) => {
         state.usersSavedArticles = action.payload.articles;
       })
