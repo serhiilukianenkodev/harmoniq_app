@@ -16,6 +16,9 @@ const ArticlesPage = () => {
   const articlesPerPage = 12;
 
   const fetchArticles = async (reset = false) => {
+    if (reset) {
+      setHasMore(false);
+    }
     setIsLoading(true);
     try {
       const currentPage = reset ? 1 : page + 1;
