@@ -35,6 +35,11 @@
   color: var(--color-black);
   margin-top: 16px;
 }
+@media only screen and (max-width: 392px) {
+  .creatorsItem {
+    width: calc((100% - 16px) / 1);
+  }
+}
 
 @media only screen and (min-width: 768px) {
   .creatorsList {
