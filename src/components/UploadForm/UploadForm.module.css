@@ -1,21 +1,21 @@
-.containerUploadForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+.containerUploadForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 
-    padding: 32px 16px;
+  padding: 32px 16px;
 }
 
-.titleUploadForm{
-    height: 44px;
-    font-family: Manrope;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 32px;
-    letter-spacing: 0px;
-    text-align: center;
+.titleUploadForm {
+  height: 44px;
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+  letter-spacing: 0px;
+  text-align: center;
 }
 
 .labelUploadForm {
@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   transition: background-color 0.2s ease;
 }
 
@@ -45,72 +45,71 @@
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 68px;
-    height: 57px;
-  }
-
-.buttonUploadForm{
-    width: 328px;
-    height: 38px;
-
-    background-color: rgba(100, 145, 121, 1);
-    border-radius: 64px;
-    border: none;
-    
-    padding: 8px;
-    cursor: pointer;
-
-    transition: background-color  0.2s ease;
-
-    font-family: Manrope;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 16px;
-    letter-spacing: 0;
-    vertical-align: middle;
-    color: rgba(247, 255, 251, 1);
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 57px;
 }
 
-.buttonUploadForm:hover{
-    background-color: rgba(55, 79, 66, 1);
+.buttonUploadForm {
+  width: 328px;
+  height: 38px;
+
+  background-color: rgba(100, 145, 121, 1);
+  border-radius: 64px;
+  border: none;
+
+  padding: 8px;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: rgba(247, 255, 251, 1);
 }
 
-.buttonUploadForm:focus{
-    box-shadow: 0px 0px 0px 6px rgba(78, 70, 180, 0.12);
-    box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
-
+.buttonUploadForm:hover {
+  background-color: rgba(55, 79, 66, 1);
 }
 
-.buttonUploadForm:disabled{
-    background-color: rgba(100, 145, 121, 1);
-    cursor: not-allowed;
-    box-shadow: 0px 0px 0px 6px rgba(78, 70, 180, 0.12);
-    box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
-    opacity: 30%;
+.buttonUploadForm:focus {
+  box-shadow: 0px 0px 0px 6px rgba(78, 70, 180, 0.12);
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
+}
+
+.buttonUploadForm:disabled {
+  background-color: rgba(100, 145, 121, 1);
+  cursor: not-allowed;
+  box-shadow: 0px 0px 0px 6px rgba(78, 70, 180, 0.12);
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
+  opacity: 30%;
 }
 
 .errorMessage {
-  color: #AD6A6C;
+  color: #ad6a6c;
   font-size: 14px;
   margin-top: 8px;
   text-align: center;
 }
 
-@media (max-width: 768px) and (min-width: 394px) {
-  .containerUploadForm{
+@media (max-width: 767px) and (min-width: 393px) {
+  .containerUploadForm {
     padding: 32px 16px;
   }
-  .buttonUploadForm{
-    width: 458px;
+  .buttonUploadForm {
+    width: 296px;
   }
 }
 
-@media (max-width: 393px) {
-  .containerUploadForm{
+@media (max-width: 392px) {
+  .containerUploadForm {
     padding: 32px 16px;
   }
   .circleButtonUploadForm,
@@ -121,13 +120,13 @@
     max-height: 136px;
     aspect-ratio: 1 / 1;
   }
-  .titleUploadForm{
+  .titleUploadForm {
     height: auto;
     font-size: clamp(16px, 8.14vw, 32px);
     line-height: clamp(16px, 8.14vw, 32px);
     white-space: nowrap;
   }
-  .buttonUploadForm{
+  .buttonUploadForm {
     width: 100%;
     max-width: 328px;
     height: 38px;

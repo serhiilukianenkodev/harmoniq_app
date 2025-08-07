@@ -73,7 +73,7 @@
 
 .modalContent {
   position: relative;
-  background: white;
+  background-color: var(--color-light-green);
   padding: 32px;
   border-radius: 16px;
   max-width: 500px;

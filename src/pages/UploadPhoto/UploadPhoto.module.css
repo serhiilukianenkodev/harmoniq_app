@@ -1,86 +1,85 @@
-.containerUploadPhoto{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.containerUploadPhoto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    height: calc(100vh - 74px - 94px);
+  height: calc(100vh - 74px - 94px);
 }
 
+.boxUploadPhoto {
+  background-color: rgba(209, 224, 216, 1);
 
-.boxUploadPhoto{
-    background-color: rgba(209, 224, 216, 1);
+  width: 522px;
+  height: 354px;
+  border-radius: 32px;
 
-    width: 392px;
-    height: 354px;
-    border-radius: 32px;
+  padding: 16px;
 
-    padding: 16px;
-
-    position: relative;
+  position: relative;
 }
 
-.boxIconCloseUploadPhoto{
-    position: absolute;
-    right: 16px;
+.boxIconCloseUploadPhoto {
+  position: absolute;
+  right: 16px;
 }
 
-.iconCloseUploadPhoto{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    position: relative;
+.iconCloseUploadPhoto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    width: 18px;
-    height: 18px;
+  position: relative;
 
-    cursor: pointer;
+  width: 18px;
+  height: 18px;
+
+  cursor: pointer;
 }
 
 .iconCloseUploadPhoto::after,
-.iconCloseUploadPhoto::before{
-    content: '';
-    position: absolute;
+.iconCloseUploadPhoto::before {
+  content: '';
+  position: absolute;
 
-    width: 100%;
-    height: 1px;
+  width: 100%;
+  height: 1px;
 
-    background: black;
-    border-radius: 1px;
+  background: black;
+  border-radius: 1px;
 }
 
 .boxIconCloseUploadPhoto:hover .iconCloseUploadPhoto::after,
-.boxIconCloseUploadPhoto:hover .iconCloseUploadPhoto::before{
-    box-shadow: 0px 0px 0.5px 0.5px rgba(0, 0, 0, 0.1);
+.boxIconCloseUploadPhoto:hover .iconCloseUploadPhoto::before {
+  box-shadow: 0px 0px 0.5px 0.5px rgba(0, 0, 0, 0.1);
 }
 
-.iconCloseUploadPhoto::after{
-    transform: rotate(-45deg);
+.iconCloseUploadPhoto::after {
+  transform: rotate(-45deg);
 }
 
-.iconCloseUploadPhoto::before{
-    transform: rotate(45deg);
+.iconCloseUploadPhoto::before {
+  transform: rotate(45deg);
 }
 
-@media (max-width: 768px) and (min-width: 394px) {
-    .containerUploadPhoto{
-        height: 626px;
-    }
-    
-    .boxUploadPhoto{
-        min-width: 522px;
-    }
+@media (max-width: 768px) and (min-width: 393px) {
+  .containerUploadPhoto {
+    height: 626px;
+  }
+
+  .boxUploadPhoto {
+    min-width: 360px;
+  }
 }
 
-@media (max-width: 393px) {
-   .containerUploadPhoto{
-        height: auto;
-        min-height: 578px;
-    }
-    .boxUploadPhoto{
-        width: 100%;
-        max-width: 360px;
-        height: auto;
-        min-height: 322px;
-    }
+@media (max-width: 392px) {
+  .containerUploadPhoto {
+    height: auto;
+    min-height: 578px;
+  }
+  .boxUploadPhoto {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    min-height: 322px;
+  }
 }

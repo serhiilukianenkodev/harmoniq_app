@@ -6,6 +6,7 @@ import { useState } from 'react';
 import ModalSignOut from '../ModalSignOut/ModalSignOut';
 import UploadForm from '../UploadForm/UploadForm';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 const UserMenu = ({ variant = 'desktop', onClose }) => {
   const user = useSelector(selectUser);
