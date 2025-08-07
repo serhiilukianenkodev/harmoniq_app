@@ -35,8 +35,12 @@ const RegisterForm = () => {
       }
       options.resetForm();
     } catch (error) {
-      toast.error("Registration failed. Please try again.");
-    }
+      const errorMessage =
+        error?.data?.message ||
+        error?.message ||
+        "Registration failed. Please try again.";
+      toast.error(errorMessage);
+  }
   };
 
   const initialValues = {

@@ -36,13 +36,15 @@ const LoginForm = () => {
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
-        toast.success("login success");
+        options.resetForm();
       })
-      .catch(() => {
-        toast.error("login error");
+      .catch((error) => {
+        const errorMessage =
+          error?.data?.message || 
+          error?.message ||      
+          "Login failed. Please try again."; 
+        toast.error(errorMessage);
       });
-
-    options.resetForm();
   };
 
   return (
