@@ -7,7 +7,7 @@ import ModalSignOut from '../ModalSignOut/ModalSignOut';
 import UploadForm from '../UploadForm/UploadForm';
 import clsx from 'clsx';
 
-const UserMenu = ({ variant = 'desktop' }) => {
+const UserMenu = ({ variant = 'desktop', onClose }) => {
   const user = useSelector(selectUser);
   const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
@@ -20,6 +20,14 @@ const UserMenu = ({ variant = 'desktop' }) => {
 
   const stopPropagation = e => {
     e.stopPropagation();
+  };
+
+  const handleConfirmSignOut = () => {
+    setIsSignOutModalOpen(true);
+  };
+
+  const handleCloseSignOutModal = () => {
+    setIsSignOutModalOpen(false);
   };
 
   return (
@@ -44,7 +52,7 @@ const UserMenu = ({ variant = 'desktop' }) => {
         <button
           type="button"
           className={css.logoutBtn}
-          onClick={() => setIsSignOutModalOpen(true)}
+          onClick={handleConfirmSignOut}
           aria-label="Log out"
         >
           <svg width="24" height="24">
@@ -54,7 +62,10 @@ const UserMenu = ({ variant = 'desktop' }) => {
       </div>
 
       {isSignOutModalOpen && (
-        <ModalSignOut onClose={() => setIsSignOutModalOpen(false)} />
+        <ModalSignOut
+          onCloseModal={handleCloseSignOutModal}
+          onLogoutComplete={onClose}
+        />
       )}
 
       {isUploadModalOpen && (
@@ -64,7 +75,9 @@ const UserMenu = ({ variant = 'desktop' }) => {
               onClick={() => setIsUploadModalOpen(false)}
               className={css.closeUpload}
             >
-              ✕
+              <svg width="32" height="32">
+                <use href="/icons/sprite.svg#small-close" />
+              </svg>
             </button>
             <UploadForm
               image={image}
