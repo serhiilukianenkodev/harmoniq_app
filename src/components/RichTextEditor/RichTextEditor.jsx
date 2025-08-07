@@ -106,11 +106,11 @@ export default function RichTextEditor({
           pointer-events: none;
         }
 
-       @media only screen and (min-width: 393px) {
+       /* @media only screen and (min-width: 393px) {
           .editor-container {
             width: 361px;
           }
-        }
+        } */
 
         @media only screen and (min-width: 768px) {
           .editor-container {
@@ -133,12 +133,36 @@ function MenuBar({ editor }) {
 
   return (
     <>
-      <button type='button' onClick={() => editor.chain().focus().toggleBold().run()}>Bold</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleItalic().run()}>Italic</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleStrike().run()}>Strike</button>
-      <button type='button' onClick={() => editor.chain().focus().toggleBlockquote().run()}>Quote</button>
-      <button type='button' onClick={() => editor.chain().focus().undo().run()}>Undo</button>
-      <button type='button' onClick={() => editor.chain().focus().redo().run()}>Redo</button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleBold().run()}
+      >
+        Bold
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleItalic().run()}
+      >
+        Italic
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleStrike().run()}
+      >
+        Strike
+      </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleBlockquote().run()}
+      >
+        Quote
+      </button>
+      <button type="button" onClick={() => editor.chain().focus().undo().run()}>
+        Undo
+      </button>
+      <button type="button" onClick={() => editor.chain().focus().redo().run()}>
+        Redo
+      </button>
     </>
   );
 }
