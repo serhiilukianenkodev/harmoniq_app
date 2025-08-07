@@ -76,8 +76,8 @@ const UserMenu = ({ variant = 'desktop', onClose }) => {
               onClick={() => setIsUploadModalOpen(false)}
               className={css.closeUpload}
             >
-              <svg width="32" height="32">
-                <use href="/icons/sprite.svg#small-close" />
+              <svg width="24" height="24">
+                <use href="/icons/sprite.svg#close-small" />
               </svg>
             </button>
             <UploadForm
