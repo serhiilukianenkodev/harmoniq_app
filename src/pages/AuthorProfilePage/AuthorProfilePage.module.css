@@ -7,6 +7,10 @@
   align-items: center;
   gap: 24px;
   margin-bottom: 24px;
+  @media screen and (max-width: 392px) {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 .avatar {

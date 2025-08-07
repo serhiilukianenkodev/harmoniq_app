@@ -11,6 +11,11 @@
   gap: 16px;
   margin-bottom: 24px;
   align-items: center;
+
+  @media screen and (max-width: 392px) {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 .avatar {
   width: 137px;
