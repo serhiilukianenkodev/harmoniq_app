@@ -94,6 +94,13 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(fetchSavedArticles.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchSavedArticles.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       // .addCase(fetchSavedArticles.fulfilled, (state, action) => {
       //   state.loading = false;
       //   state.items.push(...action.payload.articles);

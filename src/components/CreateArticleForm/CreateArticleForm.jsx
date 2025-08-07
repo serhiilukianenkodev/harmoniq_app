@@ -2,6 +2,7 @@ import { addArticle, updateArticle } from "../../redux/articles/operations";
 import { getArticleById } from "../../redux/articles/operations";
 import RichTextEditor from "../RichTextEditor/RichTextEditor";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -16,6 +17,7 @@ const Photo = () => (
 
 const CreateArticleForm = ({articleId}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const id = articleId; 
   const isEdit = Boolean(id);
   
@@ -68,10 +70,19 @@ const CreateArticleForm = ({articleId}) => {
 
     dispatch(action)
       .unwrap()
-      .then(() => toast.success(isEdit ? "Article updated!" : "Article created!"))
-      .catch(() => toast.error("Something went wrong..."));
+      .then((result) => {
+        toast.success(isEdit ? "Article updated!" : "Article created!");
 
-    if (!isEdit) options.resetForm();
+        const articleId = isEdit ? id : result.data._id;
+        
+        if (!isEdit) {
+          options.resetForm();
+        }
+        if (articleId) {
+          navigate(`/articles/${articleId}`);
+        }
+      })
+      .catch(() => toast.error("Something went wrong..."));
   };
 
   
