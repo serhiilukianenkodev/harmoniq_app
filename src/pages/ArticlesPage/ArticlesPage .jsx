@@ -57,6 +57,7 @@ const ArticlesPage = () => {
         setPage(1);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching articles:', error.message);
       if (error.message.includes('Unauthorized')) {
@@ -64,7 +65,7 @@ const ArticlesPage = () => {
         window.location.href = '/login';
       }
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
 
@@ -80,6 +81,7 @@ const ArticlesPage = () => {
 
   const handleFilterChange = newFilter => {
     if (newFilter !== filter) {
+      setIsLoading(true);
       setFilter(newFilter);
       setArticles([]);
     }
@@ -99,7 +101,10 @@ const ArticlesPage = () => {
         </div>
       </div>
 
-      <ArticlesList articles={articles} isLoading={!hasMore && isLoading} />
+      <ArticlesList
+        articles={articles}
+        isLoading={isLoading && articles.length === 0}
+      />
 
       {hasMore && (
         <div className={styles.loadMoreWrapper}>
