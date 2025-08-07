@@ -1,19 +1,18 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px; 
+  gap: 4px;
   padding: 20px;
   list-style: none;
   margin: 0;
   justify-content: space-between;
 }
 
-
 .list li {
-  flex: 0 1 calc(50% - 2px); 
+  flex: 0 1 calc(50% - 2px);
   box-sizing: border-box;
 }
-.loader{
+.loader {
   margin: 16px 0;
 }
 .placeholder {
@@ -24,6 +23,17 @@
   width: 100%;
 }
 
+@media (max-width: 392px) {
+  .list {
+    gap: 10px;
+    padding: 26px;
+  }
+
+  .list li {
+    flex: 0 1 calc(100% - 6px);
+  }
+}
+
 @media (min-width: 768px) {
   .list {
     gap: 10px;
@@ -31,7 +41,7 @@
   }
 
   .list li {
-    flex: 0 1 calc(50% - 6px); 
+    flex: 0 1 calc(50% - 6px);
   }
 
   .placeholder {
@@ -47,7 +57,7 @@
   }
 
   .list li {
-    flex: 0 1 calc(25% - 15px); 
+    flex: 0 1 calc(25% - 15px);
   }
 
   .placeholder {
